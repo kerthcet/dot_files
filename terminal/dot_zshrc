@@ -122,3 +122,4 @@ auto_pipenv_shell
 
 export PATH=/usr/local/Cellar/macvim/8.1-147/MacVim.app/Contents/bin:$PATH
 alias vim="/usr/local/Cellar/macvim/8.1-147/MacVim.app/Contents/MacOS/vim"
+alias py="/Users/tracy/.pyenv/shims/python"
