@@ -1,3 +1,25 @@
+"load vundle
+set nocompatible              " required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+	" alternatively, pass a path where Vundle should install plugins
+	"call vundle#begin('~/some/path/here')
+
+	" let Vundle manage Vundle, required
+	Plugin 'gmarik/Vundle.vim'
+	Plugin 'aradunovic/perun.vim'
+
+	" Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
+
+
+	" All of your Plugins must be added before the following line
+	call vundle#end()            " required
+	filetype plugin indent on    " required
+
 " 设置外观 -------------------------------------
 set number                      "显示行号 
 set showtabline=0               "隐藏顶部标签栏"
@@ -19,7 +41,7 @@ set showmatch                   "显示匹配的括号"
 set scrolloff=5                 "距离顶部和底部5行"
 set laststatus=2                "命令行为两行"
 " 其他杂项 -------------------------------------
-set mouse=a                     "启用鼠标"
+set mouse=                    "启用鼠标"
 set selection=exclusive
 set selectmode=mouse,key
 set matchtime=5
@@ -29,3 +51,4 @@ set hlsearch                    "高亮搜索项"
 set noexpandtab                 "不允许扩展table"
 set whichwrap+=<,>,h,l
 set autoread
+
