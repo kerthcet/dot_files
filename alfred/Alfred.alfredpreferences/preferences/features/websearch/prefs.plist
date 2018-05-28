@@ -52,7 +52,7 @@
 			<key>text</key>
 			<string>aliyun-容器服务</string>
 			<key>url</key>
-			<string>https://signin.aliyun.com/yiqizhangda/login.htm?callback=https%3A%2F%2Fcr.console.aliyun.com%2F%3Fspm%3D5176.2020520152.210.d103.73fa16ddqyEeF4&amp;accounttraceid=c1b53288-f439-4e79-9fa3-1af66017f477&amp;oauth_callback=https%3A%2F%2Fcr.console.aliyun.com%2F%3Fspm%3D5176.2020520152.210.d103.73fa16ddqyEeF4&amp;spma=a2c44&amp;spmb=11131515#/imageList</string>
+			<string>https://cr.console.aliyun.com/?spm=5176.2020520152.210.d103.73fa16ddqyEeF4#/imageList</string>
 			<key>utf8</key>
 			<true/>
 		</dict>
@@ -66,6 +66,19 @@
 			<string>微办公</string>
 			<key>url</key>
 			<string>https://www.weibangong.com/index.html#/workBoard/workBench</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>562B7ADA-BC64-411C-9505-BEAAD813039E</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>alidms</string>
+			<key>text</key>
+			<string>aliyun-DMS</string>
+			<key>url</key>
+			<string>https://dms.console.aliyun.com/#/dms/rsList</string>
 			<key>utf8</key>
 			<true/>
 		</dict>
