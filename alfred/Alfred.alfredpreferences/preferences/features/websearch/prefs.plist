@@ -43,6 +43,19 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
+		<key>4029B2FA-3326-4117-BDE4-395AE292AC33</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>aliconteacher</string>
+			<key>text</key>
+			<string>alicontainer-graphql-teacher</string>
+			<key>url</key>
+			<string>https://cr.console.aliyun.com/?spm=5176.2020520152.210.d103.5bad16ddxCnUP0#/dockerImage/cn-shanghai/kid17_backend/graphql-teacher/build</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
 		<key>4EF2E49A-D3DE-4BA2-BEE2-A8FD49070E5D</key>
 		<dict>
 			<key>enabled</key>
@@ -52,7 +65,7 @@
 			<key>text</key>
 			<string>aliyun-container</string>
 			<key>url</key>
-			<string>https://cr.console.aliyun.com/?spm=5176.2020520152.210.d103.73fa16ddqyEeF4#/imageList</string>
+			<string>https://cr.console.aliyun.com/?spm=5176.2020520152.210.d103.5bad16ddxCnUP0#/imageList</string>
 			<key>utf8</key>
 			<true/>
 		</dict>
@@ -82,6 +95,19 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
+		<key>7A418CAB-EA87-4A3F-95F9-10E797D37B46</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>aliconauth</string>
+			<key>text</key>
+			<string>alicontainer-authentication</string>
+			<key>url</key>
+			<string>https://cr.console.aliyun.com/?spm=5176.2020520152.210.d103.5bad16ddxCnUP0#/dockerImage/cn-shanghai/kid17_backend/authentication-service/detail</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
 		<key>84019539-D5B2-4F47-B4EE-080A4E7B55F5</key>
 		<dict>
 			<key>enabled</key>
@@ -105,6 +131,19 @@
 			<string>jingdong</string>
 			<key>url</key>
 			<string>https://search.jd.com/Search?keyword={query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>9974D8A6-FDF0-42E7-85F5-0DC94B89D3C3</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>alioss</string>
+			<key>text</key>
+			<string>aliyun-oss</string>
+			<key>url</key>
+			<string>https://oss.console.aliyun.com/overview</string>
 			<key>utf8</key>
 			<true/>
 		</dict>
@@ -134,6 +173,19 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
+		<key>BACD62B3-5C69-45D8-919B-B2D8D81DD268</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>aliconguardian</string>
+			<key>text</key>
+			<string>alicontainer-graphql-guardian</string>
+			<key>url</key>
+			<string>https://cr.console.aliyun.com/?spm=5176.2020520152.210.d103.5bad16ddxCnUP0#/dockerImage/cn-shanghai/kid17_backend/graphql-guardian/detail</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
 		<key>C1893E7E-25BF-4E52-B825-7C1F96F9EE5F</key>
 		<dict>
 			<key>enabled</key>
@@ -144,6 +196,19 @@
 			<string>电影天堂</string>
 			<key>url</key>
 			<string>http://www.dytt8.net/html/gndy/</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>C47A0547-46DC-4E5B-B79B-8F7267913301</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>gmail</string>
+			<key>text</key>
+			<string>gmail</string>
+			<key>url</key>
+			<string>https://mail.google.com/mail/u/0/#inbox</string>
 			<key>utf8</key>
 			<true/>
 		</dict>

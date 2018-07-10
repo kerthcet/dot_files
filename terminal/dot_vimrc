@@ -1,24 +1,39 @@
-"load vundle
-set nocompatible              " required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-	" alternatively, pass a path where Vundle should install plugins
-	"call vundle#begin('~/some/path/here')
-
-	" let Vundle manage Vundle, required
-	Plugin 'gmarik/Vundle.vim'
-	Plugin 'aradunovic/perun.vim'
-
-	" Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
+" Find Me: https://github.com/yaphetsglhf 
 
 
-	" All of your Plugins must be added before the following line
-	call vundle#end()            " required
-	filetype plugin indent on    " required
+set encoding=UTF-8
+
+" Plug管理 -------------------------------------
+call plug#begin('~/.vim/plugged')
+	Plug 'scrooloose/nerdtree'                           "目录树
+	Plug 'Xuyuanp/nerdtree-git-plugin'                   "目录树git插件
+	Plug 'kien/ctrlp.vim'                                "文件搜索 
+	Plug 'Yggdroot/indentLine'                           "缩进线
+	Plug 'vim-airline/vim-airline'                       "状态栏目
+	Plug 'vim-airline/vim-airline-themes'                "状态栏主题
+	Plug 'jiangmiao/auto-pairs'                          "括号自动匹配
+	Plug 'airblade/vim-gitgutter'                        "编辑文件时git diff
+	Plug 'tpope/vim-fugitive'                            "状态栏分支名称
+	Plug 'enricobacis/vim-airline-clock'                 "状态栏时间
+	Plug 'scrooloose/nerdcommenter'                      "批量注释
+
+	Plug 'liuchengxu/space-vim-dark'                     "vim 主题
+	Plug 'ryanoasis/vim-devicons'                        "文件icon
+	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'       "icon highlight
+
+	Plug 'wakatime/vim-wakatime'                         "vim wakatime插件
+	Plug 'SirVer/ultisnips'                              "snippets
+	Plug 'honza/vim-snippets'                            "snippets files for various programming languages
+	Plug 'Valloric/YouCompleteMe'                        "YCM 神器
+	Plug 'majutsushi/tagbar'                             "tagbar 类方法函数等
+	Plug 'Lokaltog/vim-easymotion'                       "跳转大法
+	Plug 'tmhedberg/matchit'                             "括号匹配 %
+
+	" For ruby, ycm not support, install ctags and run 'ctags -R *' under
+	" project root path, then 'Ctrl-]' to jump to the function, and Ctrl-o jump
+	" back.
+call plug#end()
+
 
 " 设置外观 -------------------------------------
 set number                      "显示行号 
@@ -29,9 +44,15 @@ set guioptions-=b               "隐藏底部滚动条"
 set cursorline                  "突出显示当前行"
 set cursorcolumn                "突出显示当前列"
 set langmenu=zh_CN.UTF-8        "显示中文菜单
-" 变成辅助 -------------------------------------
-syntax on                           "开启语法高亮
-set nowrap                      "设置代码不折行"
+
+" 设置主题
+colorscheme space-vim-dark      "设置主题"
+
+
+
+" 辅助功能 -------------------------------------
+syntax on                       "开启语法高亮
+set nowrap                      "设置代码折行"
 set fileformat=unix             "设置以unix的格式保存文件"
 set cindent                     "设置C样式的缩进格式"
 set tabstop=4                   "一个 tab 显示出来是多少个空格，默认 8
@@ -40,15 +61,208 @@ set backspace+=indent,eol,start "set backspace&可以对其重置
 set showmatch                   "显示匹配的括号"
 set scrolloff=5                 "距离顶部和底部5行"
 set laststatus=2                "命令行为两行"
+set noexpandtab                 "不允许扩展table"
+set relativenumber              "设置相对行号"
+set autoindent                  "自动对齐
+filetype plugin indent on       "文件类型检测功能"
+let mapleader = ","             "设置<leader>"
+autocmd FileType ruby setlocal et sta sw=2 sts=2     "ruby代码缩进
+set clipboard=unnamed           "复制到系统剪贴版
+
+
 " 其他杂项 -------------------------------------
-set mouse=                    "启用鼠标"
+set mouse=a
 set selection=exclusive
 set selectmode=mouse,key
 set matchtime=5
-set ignorecase                  "忽略大小写"
+set ignorecase                  " 设置默认进行大小写不敏感查找
+set smartcase                   " 如果有一个大写字母，则切换到大小写敏感查找
 set incsearch
 set hlsearch                    "高亮搜索项"
-set noexpandtab                 "不允许扩展table"
 set whichwrap+=<,>,h,l
 set autoread
 
+
+" Bug Solution -------------------------------------
+set re=1                        "解决ruby语法高亮导致vim变慢(refer:  https://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting)"
+set lazyredraw                  "Something about macros, not clear, just place here."
+set ttyfast                     "Something with scrolling slow, not clear either."
+
+" YCM, 临时解决vim8.1 跟python3.7不兼容(https://github.com/vim/vim/issues/3117)
+if has('python3')
+  silent! python3 1
+endif
+
+
+" AirLine -------------------------------------
+let g:airline_theme='luna'    "设置status bar配色"
+let g:airline#extensions#tabline#enabled=1 	"display buffers"
+"let g:airline#extensions#branch#enabled=1
+let g:airline#extensions#tabline#buffer_nr_show=1
+let g:airline_powerline_fonts=1
+
+let NERDTreeHighlightCursorline = 0
+let g:NERDTreeSyntaxDisableDefaultExtensions = 1
+let g:NERDTreeDisableExactMatchHighlight = 1
+let g:NERDTreeDisablePatternMatchHighlight = 1
+let g:NERDTreeSyntaxEnabledExtensions = ['go', 'py', 'rb', 'js', 'css', 'md',] " example
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+"设置切换Buffer快捷键"
+nnoremap <C-n> :bn<CR>
+nnoremap <C-b> :bp<CR>
+
+
+" NERD Tree -------------------------------------
+"使用F3键快速调出和隐藏它
+map <C-t> :NERDTreeToggle<CR>
+
+let NERDTreeChDirMode=1
+
+"显示书签"
+let NERDTreeShowBookmarks=1
+
+"设置忽略文件类型"
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$', 'tags',]
+
+"窗口大小"
+let NERDTreeWinSize=40
+
+" 修改默认箭头
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+"How can I open a NERDTree automatically when vim starts up if no files were specified?
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" 打开vim时自动打开NERDTree
+" autocmd vimenter * NERDTree
+
+"How can I open NERDTree automatically when vim starts up on opening a directory?
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+" 关闭vim时，如果打开的文件除了NERDTree没有其他文件时，它自动关闭，减少多次按:q!
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" 开发的过程中，我们希望git信息直接在NERDTree中显示出来， 和Eclipse一样，修改的文件和增加的文件都给出相应的标注， 这时需要安装的插件就是 nerdtree-git-plugin,配置信息如下
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
+" 显示行号
+let NERDTreeShowLineNumbers=1
+let NERDTreeAutoCenter=1
+
+" 在终端启动vim时，共享NERDTree
+let g:nerdtree_tabs_open_on_console_startup=1
+
+" Indentline -------------------------------------
+let g:indentLine_enabled=1
+let g:indentLine_char='¦'
+let g:indent_guides_start_level=1  " 从第一层开始可视化显示缩进
+
+
+" NerdCommenter -------------------------------------
+let g:NERDSpaceDelims=1
+let g:NERDTrimTrailingWhitespace=1
+
+
+" Ultisnips -------------------------------------
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger = "<leader><CR>"
+let g:UltiSnipsJumpForwardTrigger = "<C-j>"          "<C-j>跳转的到下一个代码块可编辑区
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"         "<C-k>跳转到上一个代码块可编辑区
+
+
+" YouCompleteMe -------------------------------------
+" 补全菜单的开启与关闭
+set completeopt=longest,menu                    " 让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+let g:ycm_min_num_of_chars_for_completion = 2             " 从第2个键入字符就开始罗列匹配项
+let g:ycm_autoclose_preview_window_after_completion = 1       " 智能关闭自动补全窗口
+let g:ycm_cache_omnifunc = 0                      " 禁止缓存匹配项,每次都重新生成匹配项
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif         " 离开插入模式后自动关闭预览窗口
+
+" 补全菜单中各项之间进行切换和选取：默认使用tab  s-tab进行上下切换，使用enter选取。可进行自定义设置：
+" let g:ycm_key_list_select_completion=['<c-n>']
+" let g:ycm_key_list_select_completion = ['<Down>']      " 通过上下键在补全菜单中进行切换
+" let g:ycm_key_list_previous_completion=['<c-p>']
+" let g:ycm_key_list_previous_completion = ['<Up>']
+inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"    " 回车即选中补全菜单中的当前项
+
+" 开启各种补全引擎
+let g:ycm_collect_identifiers_from_tags_files=1         " 开启 YCM 基于标签引擎
+let g:ycm_auto_trigger = 1                  " 开启 YCM 基于标识符补全，默认为1
+let g:ycm_seed_identifiers_with_syntax=1                " 开启 YCM 基于语法关键字补全
+let g:ycm_complete_in_comments = 1              " 在注释输入中也能补全
+let g:ycm_complete_in_strings = 1               " 在字符串输入中也能补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 0 " 注释和字符串中的文字也会被收入补全
+
+nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>jf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>jg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:ycm_error_symbol = '>>'
+let g:ycm_warning_symbol = '>*'
+nmap <F4> :YcmDiags<CR>                         " 提示错误信息，目前不配置快捷键，不知道要干嘛
+let g:ycm_confirm_extra_conf=0                  " 关闭加载.ycm_extra_conf.py确认提示
+
+" 重映射快捷键 TODO: not understand
+"上下左右键的行为 会显示其他信息,inoremap由i 插入模式和noremap不重映射组成，只映射一层，不会映射到映射的映射
+inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+
+"nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>           " force recomile with syntastic
+"nnoremap <leader>lo :lopen<CR>    "open locationlist
+"nnoremap <leader>lc :lclose<CR>    "close locationlist
+"inoremap <leader><leader> <C-x><C-o>
+
+
+" Tagbar -------------------------------------
+nmap <leader>l :TagbarToggle<CR>  " ,l 打开tagbar窗口
+let g:tagbar_autofocus = 1
+
+
+" ============================================================================================================
+"   Dropped plugins
+" ============================================================================================================
+
+" Taglist -------------------------------------
+" let Tlist_Ctags_Cmd='/usr/local/Cellar/ctags/5.8_1/bin/ctags'  "这里比较重要了，设置ctags的位置，不是指向MacOS自带的那个，而是我们用homebrew安装的那个
+" let Tlist_Use_Right_Window=1                      "让taglist窗口出现在Vim的右边
+" let Tlist_File_Fold_Auto_Close=1                  "当同时显示多个文件中的tag时，设置为1，可使taglist只显示当前文件tag，其它文件的tag都被折叠起来。
+" let Tlist_Show_One_File=1                         "只显示一个文件中的tag，默认为显示多个
+" let Tlist_Sort_Type ='name'                       "Tag的排序规则，以名字排序。默认是以在文件中出现的顺序排序
+" let Tlist_GainFocus_On_ToggleOpen=1               "Taglist窗口打开时，立刻切换为有焦点状态
+" let Tlist_Exit_OnlyWindow=1                       "如果taglist窗口是最后一个窗口，则退出vim
+" let Tlist_WinWidth=30                             "设置窗体宽度为32，可以根据自己喜好设置
+" map <C-l> :TlistToggle<CR>
+
+
+" 设置主题透明, shortcut 切换
+"let t:is_transparent=0
+"function! Toggle_transparent()
+"    if t:is_transparent == 0
+"        hi Normal guibg=NONE ctermbg=NONE
+"        let t:is_transparent = 1
+"    else
+"        set background=dark
+"        let t:is_tranparent = 0
+"    endif
+"endfunction
+
+"nnoremap <C-l> : call Toggle_transparent()<CR>
