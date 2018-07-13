@@ -1,39 +1,44 @@
 " Find Me: https://github.com/yaphetsglhf 
 
-
 set encoding=UTF-8
 
 " Plug管理 -------------------------------------
 call plug#begin('~/.vim/plugged')
+	Plug 'liuchengxu/space-vim-dark'                     "主题
 	Plug 'scrooloose/nerdtree'                           "目录树
 	Plug 'Xuyuanp/nerdtree-git-plugin'                   "目录树git插件
 	Plug 'kien/ctrlp.vim'                                "文件搜索 
 	Plug 'Yggdroot/indentLine'                           "缩进线
 	Plug 'vim-airline/vim-airline'                       "状态栏目
-	Plug 'vim-airline/vim-airline-themes'                "状态栏主题
-	Plug 'jiangmiao/auto-pairs'                          "括号自动匹配
-	Plug 'airblade/vim-gitgutter'                        "编辑文件时git diff
-	Plug 'tpope/vim-fugitive'                            "状态栏分支名称
-	Plug 'enricobacis/vim-airline-clock'                 "状态栏时间
-	Plug 'scrooloose/nerdcommenter'                      "批量注释
-
-	Plug 'liuchengxu/space-vim-dark'                     "vim 主题
+	Plug 'vim-airline/vim-airline-themes'                "状态栏主题 
+	Plug 'jiangmiao/auto-pairs'                          "括号自动匹配 
+	Plug 'airblade/vim-gitgutter'                        "编辑文件时git diff 
+	Plug 'tpope/vim-fugitive'                            "状态栏分支名称 
+	Plug 'enricobacis/vim-airline-clock'                 "状态栏时间 
+	Plug 'scrooloose/nerdcommenter'                      "批量注释 
 	Plug 'ryanoasis/vim-devicons'                        "文件icon
 	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'       "icon highlight
-
 	Plug 'wakatime/vim-wakatime'                         "vim wakatime插件
+
 	Plug 'SirVer/ultisnips'                              "snippets
-	Plug 'honza/vim-snippets'                            "snippets files for various programming languages
-	Plug 'Valloric/YouCompleteMe'                        "YCM 神器
 	Plug 'majutsushi/tagbar'                             "tagbar 类方法函数等
 	Plug 'Lokaltog/vim-easymotion'                       "跳转大法
 	Plug 'tmhedberg/matchit'                             "括号匹配 %
 
+	Plug 'Valloric/YouCompleteMe'                        "YCM 神器, support go-lang and run shell script to install binaries
+	Plug 'w0rp/ale'                                      "异步语法检查
+	Plug 'honza/vim-snippets'                            "snippets files for various programming languages
+
+	" Golang
+	Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}     "vim for go
+
+	" Python
+	Plug 'python-mode/python-mode'                       "vim for python, only used highlight nowadays
+
 	" For ruby, ycm not support, install ctags and run 'ctags -R *' under
 	" project root path, then 'Ctrl-]' to jump to the function, and Ctrl-o jump
 	" back.
-call plug#end()
-
+call plug#end() 
 
 " 设置外观 -------------------------------------
 set number                      "显示行号 
@@ -49,25 +54,40 @@ set langmenu=zh_CN.UTF-8        "显示中文菜单
 colorscheme space-vim-dark      "设置主题"
 
 
-
 " 辅助功能 -------------------------------------
+let mapleader = "."             "设置<leader>"
+nnoremap <leader> :
 syntax on                       "开启语法高亮
-set nowrap                      "设置代码折行"
+set nowrap                      "设置代码不折行"
 set fileformat=unix             "设置以unix的格式保存文件"
 set cindent                     "设置C样式的缩进格式"
-set tabstop=4                   "一个 tab 显示出来是多少个空格，默认 8
-set shiftwidth=4                "每一级缩进是多少个空格
+set tabstop=4                   "一个 tab 显示出来是多少个空格，默认 8 set shiftwidth=4                "每一级缩进是多少个空格
 set backspace+=indent,eol,start "set backspace&可以对其重置
 set showmatch                   "显示匹配的括号"
 set scrolloff=5                 "距离顶部和底部5行"
 set laststatus=2                "命令行为两行"
 set noexpandtab                 "不允许扩展table"
 set relativenumber              "设置相对行号"
+set clipboard=unnamed           "复制到系统剪贴版
 set autoindent                  "自动对齐
 filetype plugin indent on       "文件类型检测功能"
-let mapleader = ","             "设置<leader>"
-autocmd FileType ruby setlocal et sta sw=2 sts=2     "ruby代码缩进
-set clipboard=unnamed           "复制到系统剪贴版
+autocmd FileType tex setlocal spell spelllang=en_us,cjk
+
+" 通过索引快速跳转
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
+
+" 对buffer进行水平或垂直分屏
+nnoremap <Leader>sb :sb
+nnoremap <Leader>vs :vertical sb
 
 
 " 其他杂项 -------------------------------------
@@ -97,7 +117,8 @@ endif
 " AirLine -------------------------------------
 let g:airline_theme='luna'    "设置status bar配色"
 let g:airline#extensions#tabline#enabled=1 	"display buffers"
-"let g:airline#extensions#branch#enabled=1
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#tabline#buffer_nr_show=1
 let g:airline_powerline_fonts=1
 
@@ -170,6 +191,7 @@ let NERDTreeAutoCenter=1
 " 在终端启动vim时，共享NERDTree
 let g:nerdtree_tabs_open_on_console_startup=1
 
+
 " Indentline -------------------------------------
 let g:indentLine_enabled=1
 let g:indentLine_char='¦'
@@ -191,7 +213,7 @@ let g:UltiSnipsJumpBackwardTrigger = "<C-k>"         "<C-k>跳转到上一个代
 " YouCompleteMe -------------------------------------
 " 补全菜单的开启与关闭
 set completeopt=longest,menu                    " 让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-let g:ycm_min_num_of_chars_for_completion = 2             " 从第2个键入字符就开始罗列匹配项
+let g:ycm_min_num_of_chars_for_completion = 1             " 从第2个键入字符就开始罗列匹配项
 let g:ycm_autoclose_preview_window_after_completion = 1       " 智能关闭自动补全窗口
 let g:ycm_cache_omnifunc = 0                      " 禁止缓存匹配项,每次都重新生成匹配项
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif         " 离开插入模式后自动关闭预览窗口
@@ -214,27 +236,83 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 0 " 注释和字符串
 nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>jf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>jg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-let g:ycm_error_symbol = '>>'
-let g:ycm_warning_symbol = '>*'
+let g:ycm_error_symbol = '•'
+let g:ycm_warning_symbol = '•'
 nmap <F4> :YcmDiags<CR>                         " 提示错误信息，目前不配置快捷键，不知道要干嘛
 let g:ycm_confirm_extra_conf=0                  " 关闭加载.ycm_extra_conf.py确认提示
 
-" 重映射快捷键 TODO: not understand
-"上下左右键的行为 会显示其他信息,inoremap由i 插入模式和noremap不重映射组成，只映射一层，不会映射到映射的映射
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
-
-"nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>           " force recomile with syntastic
-"nnoremap <leader>lo :lopen<CR>    "open locationlist
-"nnoremap <leader>lc :lclose<CR>    "close locationlist
-"inoremap <leader><leader> <C-x><C-o>
-
 
 " Tagbar -------------------------------------
-nmap <leader>l :TagbarToggle<CR>  " ,l 打开tagbar窗口
+nmap <leader>l :TagbarToggle<CR>                " ,l 打开tagbar窗口
 let g:tagbar_autofocus = 1
+
+
+" fugitive.vim ------------------------------------- 
+nmap <leader>gb :Gblame<CR> 
+
+
+" Tasklist -------------------------------------
+let g:tlTokenList = ["FIXME", "TODO", "NOTE", "WARN", "MODIFY"]
+nnoremap <leader>td :TaskList<CR>
+let g:tlWindowPosition = 1
+
+
+" Ale -------------------------------------
+let g:ale_set_highlights = 0
+let g:ale_fix_on_save = 1
+
+let g:ale_sign_error = '•'
+let g:ale_sign_warning = '•'
+let g:ale_echo_msg_error_str = ' Error'
+let g:ale_echo_msg_warning_str = ' Warning'
+
+let g:ale_echo_msg_format = '[#%linter%#] %s [%severity%]'
+let g:ale_statusline_format = ['E•%d', 'W•%d', 'OK']
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_lint_on_text_changed = 0
+
+nmap <silent> <leader><leader>k <Plug>(ale_previous_wrap)
+nmap <silent> <leader><leader>j <Plug>(ale_next_wrap)
+
+
+" Vim-go ------------------------------------- 
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd FileType go nmap <leader>gb <Plug>(go-build)
+autocmd FileType go nmap <leader><leader>r <Plug>(go-run)
+autocmd FileType go nmap <leader>gt <Plug>(go-test)
+let g:go_list_type = "quickfix"
+let g:go_fmt_command = "gofmt"
+let g:go_auto_sameids = 1
+let g:go_decls_includes = "func,type"
+let g:go_def_mode = 'guru'
+let g:go_highlight_types = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave = 1
+
+
+" Ruby -------------------------------------
+autocmd FileType ruby setlocal et sta sw=2 sts=2     "ruby代码缩进
+
+
+" Pymode ------------------------------------- 
+autocmd FileType python set formatprg=yapf
+autocmd BufWritePre *.py silent normal mzgggqG`z
+let g:pymode_python = 'python3'
+let g:pymode_folding = 0
+let g:pymode_run = 1                                  "使用python-mode运行python代码
+let g:pymode_run_bind = '<Leader><Leader>r'
+let g:pymode_syntax = 1                               "开启python所有的语法高亮
+let g:pymode_syntax_all = 0
+let g:pymode_trim_whitespaces = 1                     "保存文件时自动删除无用空格
+let g:pymode_virtualenv = 1
+let g:pymode_rope_regenerate_on_write = 0             "项目修改后重新生成缓存
+let g:pymode_lint_on_write = 0
 
 
 " ============================================================================================================
