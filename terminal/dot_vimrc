@@ -1,20 +1,22 @@
-" Find Me: https://github.com/yaphetsglhf 
+" =========================================================================
+" |               Find me @https://github.com/yaphetsglhf                 |
+" =========================================================================
 
 set encoding=UTF-8
 
 " Plug管理 -------------------------------------
 call plug#begin('~/.vim/plugged')
-	Plug 'liuchengxu/space-vim-dark'                     "主题
+	Plug 'joshdick/onedark.vim'                          "atom one dark theme
+	Plug 'sheerun/vim-polyglot'                          "improved syntax highlighting for various languages
 
 	Plug 'scrooloose/nerdtree'                           "目录树
 	Plug 'Xuyuanp/nerdtree-git-plugin'                   "目录树git插件 
+	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'       "icon highlight 
 	Plug 'scrooloose/nerdcommenter'                      "批量注释 
 
 	Plug 'vim-airline/vim-airline'                       "状态栏目
 	Plug 'vim-airline/vim-airline-themes'                "状态栏主题 
 	Plug 'enricobacis/vim-airline-clock'                 "状态栏时间 
-	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'       "icon highlight
-
 	Plug 'jiangmiao/auto-pairs'                          "括号自动匹配 
 	Plug 'Yggdroot/indentLine'                           "缩进线
 
@@ -23,8 +25,9 @@ call plug#begin('~/.vim/plugged')
 
 	Plug 'ryanoasis/vim-devicons'                        "文件icon
 	Plug 'wakatime/vim-wakatime'                         "vim wakatime插件
+	Plug 'vim-scripts/TaskList.vim'                      "task list
 
-	Plug 'majutsushi/tagbar'                             "tagbar 类方法函数等
+	Plug 'majutsushi/tagbar'                             "tagbar 类方法函数等 
 	Plug 'Lokaltog/vim-easymotion'                       "跳转大法
 	Plug 'tmhedberg/matchit'                             "括号匹配 %
 	Plug 'junegunn/fzf.vim'                              "用法有待拓展
@@ -58,27 +61,49 @@ set cursorline                  "突出显示当前行"
 set cursorcolumn                "突出显示当前列"
 set langmenu=zh_CN.UTF-8        "显示中文菜单
 
-" 设置主题
-colorscheme space-vim-dark      
-let g:space_vim_dark_background = 235
 
-" gui sets gvim and cterm sets vim.
-" fg, bg set the 'foreground' and 'background' colors respectively
+" 主题onedark -------------------------------------
+set background=dark " for the dark version
+" let g:one_allow_italics = 1   "注释加背景
+syntax on                       "开启语法高亮
+colorscheme onedark
+let g:airline_theme='onedark'
+
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
+
+" Gitgutter ------------------------------------- 
+let g:gitgutter_highlight_lines = 0        "turn on line highlighting
 
 
 " 辅助功能 -------------------------------------
-let mapleader = ","             "设置<leader>"
+let mapleader = ","             "设置<leader>
 nnoremap <leader>s :w
 nnoremap <leader>q :q
 nnoremap <leader>w :wq
 vnoremap <tab> >gv              "批量缩进
 vnoremap <s-tab> <gv            "批量回退
+nnoremap <leader><leader>c :nohl<CR>   "取消高亮
 
-syntax on                       "开启语法高亮
 set nowrap                      "设置代码不折行"
 set fileformat=unix             "设置以unix的格式保存文件"
 set cindent                     "设置C样式的缩进格式"
-set tabstop=4                   "一个 tab 显示出来是多少个空格，默认 8 set shiftwidth=4                "每一级缩进是多少个空格
+set tabstop=4                   "一个 tab 显示出来是多少个空格，默认 8 
+set shiftwidth=4                "每一级缩进是多少个空格
 set backspace+=indent,eol,start "set backspace&可以对其重置
 set showmatch                   "显示匹配的括号"
 set clipboard=unnamed           "系统剪贴板
@@ -88,7 +113,7 @@ set noexpandtab                 "不允许扩展table"
 set relativenumber              "设置相对行号"
 set clipboard=unnamed           "复制到系统剪贴版
 set autoindent                  "自动对齐
-filetype plugin indent on       "文件类型检测功能"
+filetype plugin indent on       "文件类型检测功能
 autocmd FileType tex setlocal spell spelllang=en_us,cjk
 
 " 通过索引快速跳转
@@ -133,8 +158,7 @@ endif
 
 
 " AirLine -------------------------------------
-let g:airline_theme='luna'    "设置status bar配色"
-let g:airline#extensions#tabline#enabled=1 	"display buffers"
+let g:airline#extensions#tabline#enabled=1          	"display buffers
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#tabline#buffer_nr_show=1
@@ -144,7 +168,7 @@ let NERDTreeHighlightCursorline = 0
 let g:NERDTreeSyntaxDisableDefaultExtensions = 1
 let g:NERDTreeDisableExactMatchHighlight = 1
 let g:NERDTreeDisablePatternMatchHighlight = 1
-let g:NERDTreeSyntaxEnabledExtensions = ['go', 'py', 'rb', 'js', 'css', 'md',] " example
+let g:NERDTreeSyntaxEnabledExtensions = ['go', 'py', 'rb', 'md', 'sh', 'yml', 'json', 'lock',] " example
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -159,7 +183,7 @@ nnoremap <C-b> :bp<CR>
 "使用F3键快速调出和隐藏它
 map <C-t> :NERDTreeToggle<CR>
 
-let NERDTreeChDirMode=1
+let NERDTreeChDirMode=1                      "改变tree目录的同时改变工程的目录
 
 "显示书签"
 let NERDTreeShowBookmarks=1
@@ -178,12 +202,12 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-" 打开vim时自动打开NERDTree
-" autocmd vimenter * NERDTree
-
 "How can I open NERDTree automatically when vim starts up on opening a directory?
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+" 打开vim时自动打开NERDTree
+" autocmd vimenter * NERDTree
 
 " 关闭vim时，如果打开的文件除了NERDTree没有其他文件时，它自动关闭，减少多次按:q!
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -208,6 +232,9 @@ let NERDTreeAutoCenter=1
 
 " 在终端启动vim时，共享NERDTree
 let g:nerdtree_tabs_open_on_console_startup=1
+
+" 显示文件夹
+" let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
 
 " Indentline -------------------------------------
@@ -256,7 +283,6 @@ nnoremap <leader>jf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>jg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_error_symbol = '•'
 let g:ycm_warning_symbol = '•'
-nmap <F4> :YcmDiags<CR>                         " 提示错误信息，目前不配置快捷键，不知道要干嘛
 let g:ycm_confirm_extra_conf=0                  " 关闭加载.ycm_extra_conf.py确认提示
 
 
@@ -270,8 +296,8 @@ nmap <leader>gb :Gblame<CR>
 
 
 " Tasklist -------------------------------------
-let g:tlTokenList = ["FIXME", "TODO", "NOTE", "WARN", "MODIFY"]
-nnoremap <leader>td :TaskList<CR>
+let g:tlTokenList = ["FIXME", "TODO", "NOTE", "WARN", "MODIFY", "HACK"]
+nnoremap <leader>tl :TaskList<CR>
 let g:tlWindowPosition = 1
 
 
@@ -290,6 +316,8 @@ let g:ale_statusline_format = ['E•%d', 'W•%d', 'OK']
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:ale_lint_on_text_changed = 0
+
+autocmd VimEnter,Colorscheme * :hi ALEWarningSign   cterm=bold ctermfg=179   "Warning icon color
 
 nmap <silent> <leader><leader>k <Plug>(ale_previous_wrap)
 nmap <silent> <leader><leader>j <Plug>(ale_next_wrap)
@@ -344,22 +372,3 @@ let g:ctrlp_custom_ignore = {
 
 " Ctrlsf ------------------------------------- 
 nmap <C-F> <Plug>CtrlSFPrompt
-
-
-" ============================================================================================================
-"   Dropped plugins
-" ============================================================================================================
-
-" 设置主题透明, shortcut 切换
-"let t:is_transparent=0
-"function! Toggle_transparent()
-"    if t:is_transparent == 0
-"        hi Normal guibg=NONE ctermbg=NONE
-"        let t:is_transparent = 1
-"    else
-"        set background=dark
-"        let t:is_tranparent = 0
-"    endif
-"endfunction
-
-"nnoremap <C-l> : call Toggle_transparent()<CR>
