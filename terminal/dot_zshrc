@@ -11,9 +11,10 @@ DEFAULT_USER="tracy"
 #ZSH_THEME="agnoster"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
-POWERLEVEL9K_MODE='awesome-patched'
+# POWERLEVEL9K_MODE='awesome-patched'
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir dir_writable vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 
 POWERLEVEL9K_OS_ICON_BACKGROUND="white"
@@ -65,7 +66,7 @@ POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions autojump zsh-syntax-highlighting zsh-wakatime)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,10 +100,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.bash_profile
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 
 # auto run pipenv shell when enterin a project
 function auto_pipenv_shell {
@@ -118,8 +117,35 @@ function cd {
     auto_pipenv_shell
 }
 
-auto_pipenv_shell
+# auto_pipenv_shell
 
 export PATH=/usr/local/Cellar/macvim/8.1-147/MacVim.app/Contents/bin:$PATH
-alias vim="/usr/local/Cellar/macvim/8.1-147/MacVim.app/Contents/MacOS/vim"
 alias py="/Users/tracy/.pyenv/shims/python"
+alias vim="/usr/local/bin/vim"
+alias vi="vim"
+
+export PATH="$PATH:$HOME/.rvm/bin"
+alias doge="rails test"
+
+# django shortcuts
+alias django="python manage.py"
+
+# pipenv shortcuts
+alias pes="pipenv shell"
+alias pei="pipenv install"
+alias peg="pipenv graph"
+
+# go dashboard
+alias god="cd '/Users/tracy/Documents/GoRoot/src/github.com/senorprogrammer/wtf'; make run"
+
+alias gofish="go get -u -v -x"
+alias gun="go run"
+
+# govendor
+export GOPATH=/Users/tracy/Documents/GoRoot/
+export PATH=$PATH:$GOPATH/bin
+
+alias cat="ccat"
+alias ctags="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
+
+source ~/.bash_profile
