@@ -1,0 +1,16 @@
+PATH="/System/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+export M2_HOME=/Users/tracy/Software/apache-maven-3.5.0
+export PATH=$PATH:$M2_HOME/bin:/usr/local/mysql/bin
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+source ~/.profile
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+alias phantomjs="/Users/tracy/Downloads/phantomjs-2.1.1-macosx/bin/phantomjs"
+alias gun="go run"
+
+export GOPATH="/Users/tracy/Documents/Golang"
+export PATH="$PATH:$GOPATH/bin"
+
