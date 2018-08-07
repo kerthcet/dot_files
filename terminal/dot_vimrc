@@ -1,5 +1,26 @@
 " =========================================================================
-" |               Find me @https://github.com/yaphetsglhf                 |
+"                 Find me @https://github.com/yaphetsglhf                 
+"
+"                      ░░░░░░░░░▄░░░░░░░░░░░░░░▄░░░░
+"                      ░░░░░░░░▌▒█░░░░░░░░░░░▄▀▒▌░░░
+"                      ░░░░░░░░▌▒▒█░░░░░░░░▄▀▒▒▒▐░░░
+"                      ░░░░░░░▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐░░░
+"                      ░░░░░▄▄▀▒░▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐░░░
+"                      ░░░▄▀▒▒▒░░░▒▒▒░░░▒▒▒▀██▀▒▌░░░
+"                      ░░▐▒▒▒▄▄▒▒▒▒░░░▒▒▒▒▒▒▒▀▄▒▒▌░░
+"                      ░░▌░░▌█▀▒▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐░░
+"                      ░▐░░░▒▒▒▒▒▒▒▒▌██▀▒▒░░░▒▒▒▀▄▌░
+"                      ░▌░▒▄██▄▒▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒▌░
+"                      ▀▒▀▐▄█▄█▌▄░▀▒▒░░░░░░░░░░▒▒▒▐░
+"                      ▐▒▒▐▀▐▀▒░▄▄▒▄▒▒▒▒▒▒░▒░▒░▒▒▒▒▌
+"                      ▐▒▒▒▀▀▄▄▒▒▒▄▒▒▒▒▒▒▒▒░▒░▒░▒▒▐░
+"                      ░▌▒▒▒▒▒▒▀▀▀▒▒▒▒▒▒░▒░▒░▒░▒▒▒▌░
+"                      ░▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒░▒░▒▒▄▒▒▐░░
+"                      ░░▀▄▒▒▒▒▒▒▒▒▒▒▒░▒░▒░▒▄▒▒▒▒▌░░
+"                      ░░░░▀▄▒▒▒▒▒▒▒▒▒▒▄▄▄▀▒▒▒▒▄▀░░░
+"                      ░░░░░░▀▄▄▄▄▄▄▀▀▀▒▒▒▒▒▄▄▀░░░░░
+"                      ░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▀▀░░░░░░░░
+"
 " =========================================================================
 
 set encoding=UTF-8
@@ -26,14 +47,16 @@ call plug#begin('~/.vim/plugged')
 	Plug 'ryanoasis/vim-devicons'                        "文件icon
 	Plug 'wakatime/vim-wakatime'                         "vim wakatime插件
 	Plug 'vim-scripts/TaskList.vim'                      "task list
+	Plug 'vim-scripts/CmdlineComplete'                   "cmd 命令补全, Ctrl-P
 
 	Plug 'majutsushi/tagbar'                             "tagbar 类方法函数等 
 	Plug 'Lokaltog/vim-easymotion'                       "跳转大法
+	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+	Plug 'junegunn/fzf.vim'
 	Plug 'tmhedberg/matchit'                             "括号匹配 %
-	Plug 'junegunn/fzf.vim'                              "用法有待拓展
+	Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }    "文件查找，替代ctrlp
 
 	Plug 'Valloric/YouCompleteMe'                        "YCM 神器, support go-lang and run shell script to install binaries
-	Plug 'kien/ctrlp.vim'                                "文件搜索 
 	Plug 'w0rp/ale'                                      "异步语法检查
 	Plug 'SirVer/ultisnips'                              "snippet engine
 	Plug 'honza/vim-snippets'                            "snippets files for various programming languages
@@ -45,9 +68,9 @@ call plug#begin('~/.vim/plugged')
 	" Python
 	Plug 'python-mode/python-mode'                       "vim for python, only used highlight nowadays
 
-	" For ruby, ycm not support, install ctags and run 'ctags -R *' under
-	" project root path, then 'Ctrl-]' to jump to the function, and Ctrl-o jump
-	" back.
+	" ruby 其实这两个插件用的不多
+	Plug 'vim-ruby/vim-ruby'
+	Plug 'tpope/vim-rails'
 call plug#end() 
 
 
@@ -72,7 +95,8 @@ let g:airline_theme='onedark'
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if (empty($TMUX))
+
+" if (empty($TMUX))
   if (has("nvim"))
   "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -83,7 +107,7 @@ if (empty($TMUX))
   if (has("termguicolors"))
     set termguicolors
   endif
-endif
+" endif
 
 
 " Gitgutter ------------------------------------- 
@@ -113,6 +137,9 @@ set noexpandtab                 "不允许扩展table"
 set relativenumber              "设置相对行号"
 set clipboard=unnamed           "复制到系统剪贴版
 set autoindent                  "自动对齐
+set nobackup                    "取消备份
+set nowb
+set noswapfile
 filetype plugin indent on       "文件类型检测功能
 autocmd FileType tex setlocal spell spelllang=en_us,cjk
 
@@ -140,21 +167,17 @@ set selectmode=mouse,key
 set matchtime=5
 set ignorecase                  " 设置默认进行大小写不敏感查找
 set smartcase                   " 如果有一个大写字母，则切换到大小写敏感查找
-set incsearch
-set hlsearch                    "高亮搜索项"
+set incsearch                   " 键入即时搜索
+set hlsearch                    " 高亮搜索项"
 set whichwrap+=<,>,h,l
 set autoread
+set noerrorbells                " 去掉输入错误的提示音，虽然我也不知道是什么声音
 
 
 " Bug Solution -------------------------------------
 set re=1                        "解决ruby语法高亮导致vim变慢(refer:  https://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting)"
 set lazyredraw                  "Something about macros, not clear, just place here."
 set ttyfast                     "Something with scrolling slow, not clear either."
-
-" YCM, 临时解决vim8.1 跟python3.7不兼容(https://github.com/vim/vim/issues/3117)
-if has('python3')
-  silent! python3 1
-endif
 
 
 " AirLine -------------------------------------
@@ -164,11 +187,12 @@ let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#tabline#buffer_nr_show=1
 let g:airline_powerline_fonts=1
 
+" vim-nerdtree-syntax-highlight
 let NERDTreeHighlightCursorline = 0
 let g:NERDTreeSyntaxDisableDefaultExtensions = 1
 let g:NERDTreeDisableExactMatchHighlight = 1
 let g:NERDTreeDisablePatternMatchHighlight = 1
-let g:NERDTreeSyntaxEnabledExtensions = ['go', 'py', 'rb', 'md', 'sh', 'yml', 'json', 'lock',] " example
+let g:NERDTreeSyntaxEnabledExtensions = ['js', 'html', 'go', 'py', 'rb', 'md', 'sh', 'yml', 'json', 'lock', 'j2', 'nomad', 'cfg', ] " example
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -189,7 +213,7 @@ let NERDTreeChDirMode=1                      "改变tree目录的同时改变工
 let NERDTreeShowBookmarks=1
 
 "设置忽略文件类型"
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$', 'tags',]
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$', 'tags', '.DS_Store', '.git$', '.venv', '.keep']
 
 "窗口大小"
 let NERDTreeWinSize=40
@@ -247,6 +271,8 @@ let g:indent_guides_start_level=1  " 从第一层开始可视化显示缩进
 let g:NERDSpaceDelims=1
 let g:NERDTrimTrailingWhitespace=1
 
+let NERDTreeShowHidden=1
+
 
 " Ultisnips -------------------------------------
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -256,31 +282,54 @@ let g:UltiSnipsJumpBackwardTrigger = "<C-k>"         "<C-k>跳转到上一个代
 
 
 " YouCompleteMe -------------------------------------
+" YCM, 临时解决vim8.1 跟python3.7不兼容(https://github.com/vim/vim/issues/3117)
+if has('python3')
+  silent! python3 1
+endif
+
 " 补全菜单的开启与关闭
-set completeopt=longest,menu                    " 让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-let g:ycm_min_num_of_chars_for_completion = 1             " 从第2个键入字符就开始罗列匹配项
-let g:ycm_autoclose_preview_window_after_completion = 1       " 智能关闭自动补全窗口
-let g:ycm_cache_omnifunc = 0                      " 禁止缓存匹配项,每次都重新生成匹配项
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif         " 离开插入模式后自动关闭预览窗口
+set completeopt=longest,menu                                " 让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+let g:ycm_min_num_of_chars_for_completion = 1               " 从第?个键入字符就开始罗列匹配项
+let g:ycm_autoclose_preview_window_after_completion = 1     " 智能关闭自动补全窗口
+let g:ycm_cache_omnifunc = 0                                " 禁止缓存匹配项,每次都重新生成匹配项
+let g:ycm_collect_identifiers_from_tags_files=1             " 开启 YCM 基于标签引擎
+let g:ycm_auto_trigger = 1                                  " 开启 YCM 基于标识符补全，默认为1
+let g:ycm_seed_identifiers_with_syntax=1                    " 开启 YCM 基于语法关键字补全
+let g:ycm_complete_in_comments = 1                          " 在注释输入中也能补全
+let g:ycm_complete_in_strings = 1                           " 在字符串输入也能补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 0 " 注释和字符串中的文字也会被收入补全
+let g:ycm_add_preview_to_completeopt = 0                    " 自动弹出函数原型预览窗口
+let g:ycm_show_diagnostics_ui = 0                           " 不显示诊断信息
+let g:ycm_server_log_level = 'debug'                        " log level
+let g:ycm_python_binary_path = 'python'                     "指向默认的python, 同时会检测默认virtualenv
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif     " 离开插入模式后自动关闭预览窗口
+
+let g:ycm_semantic_triggers =  {
+  \   'c' : ['->', '.'],
+  \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+  \             're!\[.*\]\s'],
+  \   'ocaml' : ['.', '#'],
+  \   'cpp,objcpp' : ['->', '.', '::'],
+  \   'perl' : ['->'],
+  \   'php' : ['->', '::'],
+  \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+  \   'ruby' : ['.', '::'],
+  \   'lua' : ['.', ':'],
+  \   'erlang' : [':'],
+  \ }
 
 " 补全菜单中各项之间进行切换和选取：默认使用tab  s-tab进行上下切换，使用enter选取。可进行自定义设置：
 " let g:ycm_key_list_select_completion=['<c-n>']
 " let g:ycm_key_list_select_completion = ['<Down>']      " 通过上下键在补全菜单中进行切换
 " let g:ycm_key_list_previous_completion=['<c-p>']
 " let g:ycm_key_list_previous_completion = ['<Up>']
+"
 inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"    " 回车即选中补全菜单中的当前项
-
-" 开启各种补全引擎
-let g:ycm_collect_identifiers_from_tags_files=1         " 开启 YCM 基于标签引擎
-let g:ycm_auto_trigger = 1                  " 开启 YCM 基于标识符补全，默认为1
-let g:ycm_seed_identifiers_with_syntax=1                " 开启 YCM 基于语法关键字补全
-let g:ycm_complete_in_comments = 1              " 在注释输入中也能补全
-let g:ycm_complete_in_strings = 1               " 在字符串输入中也能补全
-let g:ycm_collect_identifiers_from_comments_and_strings = 0 " 注释和字符串中的文字也会被收入补全
 
 nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>jf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>jg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
 let g:ycm_error_symbol = '•'
 let g:ycm_warning_symbol = '•'
 let g:ycm_confirm_extra_conf=0                  " 关闭加载.ycm_extra_conf.py确认提示
@@ -325,9 +374,9 @@ nmap <silent> <leader><leader>j <Plug>(ale_next_wrap)
 
 " Vim-go ------------------------------------- 
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-autocmd FileType go nmap <leader>gb <Plug>(go-build)
-autocmd FileType go nmap <leader><leader>r <Plug>(go-run)
-autocmd FileType go nmap <leader>gt <Plug>(go-test)
+autocmd FileType go nmap <leader>b <Plug>(go-build)
+autocmd FileType go nmap <leader>r <Plug>(go-run)
+autocmd FileType go nmap <leader>t <Plug>(go-test)
 let g:go_list_type = "quickfix"
 let g:go_fmt_command = "gofmt"
 let g:go_auto_sameids = 1
@@ -344,31 +393,33 @@ let g:go_metalinter_autosave = 1
 
 
 " Ruby -------------------------------------
-autocmd FileType ruby setlocal et sta sw=2 sts=2     "ruby代码缩进
+autocmd FileType ruby setlocal et sta sw=2 sts=2 spell spelllang=en_us,cjk    "ruby代码缩进
 
 
 " Pymode ------------------------------------- 
 autocmd FileType python set ts=4 | set sw=4 | set expandtab formatprg=yapf
 autocmd BufWritePre *.py silent normal mzgggqG`z
+
 let g:pymode_python = 'python3'
+let g:pymode_warnings = 1
 let g:pymode_folding = 0
 let g:pymode_run = 1                                  "使用python-mode运行python代码
-let g:pymode_run_bind = '<Leader><Leader>r'
+let g:pymode_run_bind = '<Leader>r'
 let g:pymode_syntax = 1                               "开启python所有的语法高亮
-let g:pymode_syntax_all = 0
+let g:pymode_syntax_all = 1
 let g:pymode_trim_whitespaces = 1                     "保存文件时自动删除无用空格
 let g:pymode_virtualenv = 1
 let g:pymode_rope_regenerate_on_write = 0             "项目修改后重新生成缓存
 let g:pymode_lint_on_write = 0
 
-
-" Ctrlp -------------------------------------
-let g:ctrlp_use_caching = 0
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
-    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
-    \ }
+" close python mode Regenerate repo cache
+let g:pymode_rope = 0
+let g:pymode_rope_lookup_project = 0
 
 
 " Ctrlsf ------------------------------------- 
 nmap <C-F> <Plug>CtrlSFPrompt
+
+
+" Leaderf ------------------------------------- 
+let g:Lf_ShortcutF = '<C-P>'
