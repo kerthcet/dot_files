@@ -39,4 +39,5 @@ alias gun="go run"
 alias cat="ccat"
 alias ctags="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
 
+alias bmp="bumpversion"
 

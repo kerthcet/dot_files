@@ -48,6 +48,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'wakatime/vim-wakatime'                         "vim wakatime插件
 	Plug 'vim-scripts/TaskList.vim'                      "task list
 	Plug 'vim-scripts/CmdlineComplete'                   "cmd 命令补全, Ctrl-P
+	Plug 'kien/rainbow_parentheses.vim'
 
 	Plug 'majutsushi/tagbar'                             "tagbar 类方法函数等 
 	Plug 'Lokaltog/vim-easymotion'                       "跳转大法
@@ -61,12 +62,14 @@ call plug#begin('~/.vim/plugged')
 	Plug 'SirVer/ultisnips'                              "snippet engine
 	Plug 'honza/vim-snippets'                            "snippets files for various programming languages
 	Plug 'dyng/ctrlsf.vim'                               "search and view tool
+	Plug 'tpope/vim-surround'                            "all abount surrendings
+	Plug 'tpope/vim-repeat'
 
 	" Golang
 	Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}     "vim for go
 
 	" Python
-	Plug 'python-mode/python-mode'                       "vim for python, only used highlight nowadays
+	Plug 'python-mode/python-mode'                       "vim for python
 
 	" ruby 其实这两个插件用的不多
 	Plug 'vim-ruby/vim-ruby'
@@ -111,6 +114,7 @@ let g:airline_theme='onedark'
 
 
 " Gitgutter ------------------------------------- 
+" '[-c', 向前跳转；']-c'向后跳转；
 let g:gitgutter_highlight_lines = 0        "turn on line highlighting
 
 
@@ -119,10 +123,12 @@ let mapleader = ","             "设置<leader>
 nnoremap <leader>s :w
 nnoremap <leader>q :q
 nnoremap <leader>w :wq
-vnoremap <tab> >gv              "批量缩进
-vnoremap <s-tab> <gv            "批量回退
+vnoremap <tab> >gv                     "批量缩进
+vnoremap <s-tab> <gv                   "批量回退
 nnoremap <leader><leader>c :nohl<CR>   "取消高亮
+nnoremap gd <C-S>*
 
+set foldmethod=indent           "代码折叠，za, zR, zM, zn 禁用折叠，zN启用折叠，
 set nowrap                      "设置代码不折行"
 set fileformat=unix             "设置以unix的格式保存文件"
 set cindent                     "设置C样式的缩进格式"
@@ -130,7 +136,6 @@ set tabstop=4                   "一个 tab 显示出来是多少个空格，默
 set shiftwidth=4                "每一级缩进是多少个空格
 set backspace+=indent,eol,start "set backspace&可以对其重置
 set showmatch                   "显示匹配的括号"
-set clipboard=unnamed           "系统剪贴板
 set scrolloff=5                 "距离顶部和底部5行"
 set laststatus=2                "命令行为两行"
 set noexpandtab                 "不允许扩展table"
@@ -190,9 +195,32 @@ let g:airline_powerline_fonts=1
 " vim-nerdtree-syntax-highlight
 let NERDTreeHighlightCursorline = 0
 let g:NERDTreeSyntaxDisableDefaultExtensions = 1
-let g:NERDTreeDisableExactMatchHighlight = 1
+" let g:NERDTreeDisableExactMatchHighlight = 1
 let g:NERDTreeDisablePatternMatchHighlight = 1
-let g:NERDTreeSyntaxEnabledExtensions = ['js', 'html', 'go', 'py', 'rb', 'md', 'sh', 'yml', 'json', 'lock', 'j2', 'nomad', 'cfg', ] " example
+let g:NERDTreeSyntaxEnabledExtensions = ['sql', 'js', 'html', 'go', 'py', 'rb', 'md', 'sh', 'yml', 'json', 'lock', 'j2', 'nomad', 'cfg', ]
+
+" customizing color
+let s:brown = "905532"
+let s:aqua =  "3AFFDB"
+let s:blue = "689FB6"
+let s:darkBlue = "44788E"
+let s:purple = "834F79"
+let s:lightPurple = "834F79"
+let s:red = "AE403F"
+let s:beige = "F5C06F"
+let s:yellow = "F09F17"
+let s:orange = "D4843E"
+let s:darkOrange = "F16529"
+let s:pink = "CB6F6F"
+let s:salmon = "EE6E73"
+let s:green = "8FAA54"
+let s:lightGreen = "31B53E"
+let s:white = "FFFFFF"
+let s:rspec_red = 'FE405F'
+let s:git_orange = 'F54D27'
+
+let g:NERDTreeExactMatchHighlightColor = {}
+let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:darkBlue
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -270,7 +298,7 @@ let g:indent_guides_start_level=1  " 从第一层开始可视化显示缩进
 " NerdCommenter -------------------------------------
 let g:NERDSpaceDelims=1
 let g:NERDTrimTrailingWhitespace=1
-
+let g:NERDDefaultAlign = 'start'    " 注释从头开始
 let NERDTreeShowHidden=1
 
 
@@ -301,7 +329,7 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 0 " 注释和字符串
 let g:ycm_add_preview_to_completeopt = 0                    " 自动弹出函数原型预览窗口
 let g:ycm_show_diagnostics_ui = 0                           " 不显示诊断信息
 let g:ycm_server_log_level = 'debug'                        " log level
-let g:ycm_python_binary_path = 'python'                     "指向默认的python, 同时会检测默认virtualenv
+let g:ycm_python_binary_path = 'python'                     " 指向默认的python, 同时会检测默认virtualenv
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif     " 离开插入模式后自动关闭预览窗口
 
 let g:ycm_semantic_triggers =  {
@@ -317,6 +345,7 @@ let g:ycm_semantic_triggers =  {
   \   'lua' : ['.', ':'],
   \   'erlang' : [':'],
   \ }
+
 
 " 补全菜单中各项之间进行切换和选取：默认使用tab  s-tab进行上下切换，使用enter选取。可进行自定义设置：
 " let g:ycm_key_list_select_completion=['<c-n>']
@@ -377,9 +406,11 @@ autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 autocmd FileType go nmap <leader>b <Plug>(go-build)
 autocmd FileType go nmap <leader>r <Plug>(go-run)
 autocmd FileType go nmap <leader>t <Plug>(go-test)
+autocmd FileType go nmap <leader>jd <Plug>(go-def)
+
 let g:go_list_type = "quickfix"
 let g:go_fmt_command = "gofmt"
-let g:go_auto_sameids = 1
+let g:go_auto_sameids = 0
 let g:go_decls_includes = "func,type"
 let g:go_def_mode = 'guru'
 let g:go_highlight_types = 1
@@ -390,15 +421,17 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 let g:go_metalinter_autosave = 1
+let g:go_def_mapping_enabled = 0
 
 
 " Ruby -------------------------------------
-autocmd FileType ruby setlocal et sta sw=2 sts=2 spell spelllang=en_us,cjk    "ruby代码缩进
+autocmd FileType ruby setlocal et sta sw=2 sts=2    "ruby代码缩进
 
 
 " Pymode ------------------------------------- 
 autocmd FileType python set ts=4 | set sw=4 | set expandtab formatprg=yapf
-autocmd BufWritePre *.py silent normal mzgggqG`z
+" 动作说明: mz 标记当前位置 gg gq G 跳到文档首行，美化到文档尾行 `z 回到之前标记好的位置
+autocmd BufWritePre *.py silent normal mzgggqG`z  
 
 let g:pymode_python = 'python3'
 let g:pymode_warnings = 1
@@ -411,6 +444,7 @@ let g:pymode_trim_whitespaces = 1                     "保存文件时自动删�
 let g:pymode_virtualenv = 1
 let g:pymode_rope_regenerate_on_write = 0             "项目修改后重新生成缓存
 let g:pymode_lint_on_write = 0
+let g:pymode_breakpoint_bind = '<leader>b'            "自动加入断点语句
 
 " close python mode Regenerate repo cache
 let g:pymode_rope = 0
@@ -423,3 +457,28 @@ nmap <C-F> <Plug>CtrlSFPrompt
 
 " Leaderf ------------------------------------- 
 let g:Lf_ShortcutF = '<C-P>'
+
+
+" Better Rainbow Parentheses ------------------------------------- 
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadBraces
