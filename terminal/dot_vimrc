@@ -1,26 +1,5 @@
 " =========================================================================
 "                 Find me @https://github.com/yaphetsglhf                 
-"
-"                      ░░░░░░░░░▄░░░░░░░░░░░░░░▄░░░░
-"                      ░░░░░░░░▌▒█░░░░░░░░░░░▄▀▒▌░░░
-"                      ░░░░░░░░▌▒▒█░░░░░░░░▄▀▒▒▒▐░░░
-"                      ░░░░░░░▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐░░░
-"                      ░░░░░▄▄▀▒░▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐░░░
-"                      ░░░▄▀▒▒▒░░░▒▒▒░░░▒▒▒▀██▀▒▌░░░
-"                      ░░▐▒▒▒▄▄▒▒▒▒░░░▒▒▒▒▒▒▒▀▄▒▒▌░░
-"                      ░░▌░░▌█▀▒▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐░░
-"                      ░▐░░░▒▒▒▒▒▒▒▒▌██▀▒▒░░░▒▒▒▀▄▌░
-"                      ░▌░▒▄██▄▒▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒▌░
-"                      ▀▒▀▐▄█▄█▌▄░▀▒▒░░░░░░░░░░▒▒▒▐░
-"                      ▐▒▒▐▀▐▀▒░▄▄▒▄▒▒▒▒▒▒░▒░▒░▒▒▒▒▌
-"                      ▐▒▒▒▀▀▄▄▒▒▒▄▒▒▒▒▒▒▒▒░▒░▒░▒▒▐░
-"                      ░▌▒▒▒▒▒▒▀▀▀▒▒▒▒▒▒░▒░▒░▒░▒▒▒▌░
-"                      ░▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒░▒░▒▒▄▒▒▐░░
-"                      ░░▀▄▒▒▒▒▒▒▒▒▒▒▒░▒░▒░▒▄▒▒▒▒▌░░
-"                      ░░░░▀▄▒▒▒▒▒▒▒▒▒▒▄▄▄▀▒▒▒▒▄▀░░░
-"                      ░░░░░░▀▄▄▄▄▄▄▀▀▀▒▒▒▒▒▄▄▀░░░░░
-"                      ░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▀▀░░░░░░░░
-"
 " =========================================================================
 
 set encoding=UTF-8
@@ -43,6 +22,10 @@ call plug#begin('~/.vim/plugged')
 
 	Plug 'airblade/vim-gitgutter'                        "编辑文件时git diff 
 	Plug 'tpope/vim-fugitive'                            "状态栏分支名称 
+	" npm install -g prettier first
+	Plug 'prettier/vim-prettier', {
+	  \ 'do': 'yarn install',
+	  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 
 	Plug 'ryanoasis/vim-devicons'                        "文件icon
 	Plug 'wakatime/vim-wakatime'                         "vim wakatime插件
@@ -63,7 +46,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'honza/vim-snippets'                            "snippets files for various programming languages
 	Plug 'dyng/ctrlsf.vim'                               "search and view tool
 	Plug 'tpope/vim-surround'                            "all abount surrendings
-	Plug 'tpope/vim-repeat'
+	Plug 'tpope/vim-repeat'                              "配合vim-surround 使用，重复上面的操作
 
 	" Golang
 	Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}     "vim for go
@@ -71,9 +54,7 @@ call plug#begin('~/.vim/plugged')
 	" Python
 	Plug 'python-mode/python-mode'                       "vim for python
 
-	" ruby 其实这两个插件用的不多
 	Plug 'vim-ruby/vim-ruby'
-	Plug 'tpope/vim-rails'
 call plug#end() 
 
 
@@ -142,9 +123,8 @@ set noexpandtab                 "不允许扩展table"
 set relativenumber              "设置相对行号"
 set clipboard=unnamed           "复制到系统剪贴版
 set autoindent                  "自动对齐
-set nobackup                    "取消备份
+set nobackup noswapfile         "取消备份
 set nowb
-set noswapfile
 filetype plugin indent on       "文件类型检测功能
 autocmd FileType tex setlocal spell spelllang=en_us,cjk
 
@@ -197,7 +177,7 @@ let NERDTreeHighlightCursorline = 0
 let g:NERDTreeSyntaxDisableDefaultExtensions = 1
 " let g:NERDTreeDisableExactMatchHighlight = 1
 let g:NERDTreeDisablePatternMatchHighlight = 1
-let g:NERDTreeSyntaxEnabledExtensions = ['sql', 'js', 'html', 'go', 'py', 'rb', 'md', 'sh', 'yml', 'json', 'lock', 'j2', 'nomad', 'cfg', ]
+let g:NERDTreeSyntaxEnabledExtensions = ['sql', 'js', 'html', 'go', 'py', 'rb', 'md', 'sh', 'yml', 'json', 'lock', 'j2', 'nomad', 'cfg', 'txt']
 
 " customizing color
 let s:brown = "905532"
@@ -298,7 +278,7 @@ let g:indent_guides_start_level=1  " 从第一层开始可视化显示缩进
 " NerdCommenter -------------------------------------
 let g:NERDSpaceDelims=1
 let g:NERDTrimTrailingWhitespace=1
-let g:NERDDefaultAlign = 'start'    " 注释从头开始
+let g:NERDDefaultAlign = 'left'    " 注释从头开始
 let NERDTreeShowHidden=1
 
 
@@ -345,7 +325,6 @@ let g:ycm_semantic_triggers =  {
   \   'lua' : ['.', ':'],
   \   'erlang' : [':'],
   \ }
-
 
 " 补全菜单中各项之间进行切换和选取：默认使用tab  s-tab进行上下切换，使用enter选取。可进行自定义设置：
 " let g:ycm_key_list_select_completion=['<c-n>']
