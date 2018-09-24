@@ -35,9 +35,10 @@ POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='236'
 POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='245'
 POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='236'
 
-# Syntax highlighting
 plugins=(git zsh-autosuggestions autojump zsh-syntax-highlighting zsh-wakatime)
 source $ZSH/oh-my-zsh.sh
+
+# Syntax highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # auto run pipenv shell when enterin a project
