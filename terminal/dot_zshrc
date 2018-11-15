@@ -5,6 +5,8 @@ DEFAULT_USER="tracy"
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/tracy/.oh-my-zsh
 export TERM="xterm-256color"
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
 
 # POWERLEVEL9K
 ZSH_THEME="powerlevel9k/powerlevel9k"
@@ -12,7 +14,7 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable context vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time background_jobs command_execution_time vi_mode virtualenv pyenv rvm)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time background_jobs command_execution_time virtualenv pyenv rvm) # vi_mode
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='245'
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='black'
 POWERLEVEL9K_OS_ICON_BACKGROUND="white"
@@ -40,7 +42,7 @@ POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%K{white}%F{black} \UE12E `date +%T` %f%k%F{white}%f "
 
-plugins=(git zsh-autosuggestions zsh-completions autojump zsh-syntax-highlighting zsh-wakatime vi-mode)
+plugins=(git zsh-autosuggestions zsh-completions autojump zsh-syntax-highlighting zsh-wakatime vi-mode golang)
 source $ZSH/oh-my-zsh.sh
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -72,5 +74,7 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
   zle -N down-line-or-beginning-search
   bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 fi
+
+bindkey '^K' kill-line
 
 source ~/.bash_profile
