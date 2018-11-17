@@ -47,5 +47,5 @@ brew install tig
 brew install tree
 pip3 install bumpversion
 
-# abandon tools
-# brew install cliclick
+# create files
+cd ~/.vim; mkdir undodir
