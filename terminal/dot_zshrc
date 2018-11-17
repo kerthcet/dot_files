@@ -75,6 +75,12 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
   bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 fi
 
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+bindkey '^W' backward-kill-word
 bindkey '^K' kill-line
+bindkey '^F' forward-char
+bindkey '^B' backward-char
+bindkey '^D' delete-char
 
 source ~/.bash_profile

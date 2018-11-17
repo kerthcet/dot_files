@@ -38,7 +38,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 	Plug 'junegunn/fzf.vim'
 	Plug 'tmhedberg/matchit'                             "括号匹配 %
-	Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }    "文件查找，替代ctrlp
+	Plug 'ctrlpvim/ctrlp.vim'                            "文件查找
+	" Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }    "文件查找，替代ctrlp
 
 	Plug 'Valloric/YouCompleteMe'                        "YCM 神器, support go-lang and run shell script to install binaries
 	Plug 'w0rp/ale'                                      "异步语法检查
@@ -124,7 +125,10 @@ set relativenumber              "设置相对行号"
 set clipboard=unnamed           "复制到系统剪贴版
 set autoindent                  "自动对齐
 set nobackup noswapfile         "取消备份
+set autochdir                   "将工作目录自动切换到正在编辑的文件所在的目录
+set undofile                    "文件关闭后也可以维护撤销历史
 set nowb
+set textwidth=80                "设置最大宽度
 filetype plugin indent on       "文件类型检测功能
 autocmd FileType tex setlocal spell spelllang=en_us,cjk
 
@@ -435,10 +439,15 @@ nmap <C-F> <Plug>CtrlSFPrompt
 
 
 " Leaderf ------------------------------------- 
-let g:Lf_ShortcutF = '<C-P>'
+" let g:Lf_ShortcutF = '<C-P>'
 
+" ctrlp -------------------------------------
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ }
 
-" Better Rainbow Parentheses ------------------------------------- 
+" Better Rainbow Parentheses, 彩虹括号 ------------------------------------- 
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
     \ ['Darkblue',    'SeaGreen3'],
@@ -457,7 +466,6 @@ let g:rbpt_colorpairs = [
     \ ['darkred',     'DarkOrchid3'],
     \ ['red',         'firebrick3'],
     \ ]
-
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadBraces
