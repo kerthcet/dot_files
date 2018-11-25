@@ -1,0 +1,27 @@
+alias vim="/usr/local/bin/vim"
+alias vi="vim"
+
+# webfront
+alias phantomjs="/Users/tracy/Downloads/phantomjs-2.1.1-macosx/bin/phantomjs"
+# python
+alias py="/Users/tracy/.pyenv/shims/python"
+alias django="python manage.py"
+# golang
+alias gofish="go get -u -v -x"
+alias gun="go run"
+# ruby
+alias doge="rails test"
+
+# go dashboard
+alias god="cd '/Users/tracy/Documents/Golang/src/github.com/senorprogrammer/wtf'; make run"
+
+alias cat="ccat"
+alias ctags="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
+
+alias bmp="bumpversion"
+alias d='docker'
+alias dc='docker-compose'
+alias ap='ansible-playbook'
+
+alias wrk="cd '/Users/tracy/Documents/GitMe/wrk'; ./wrk"
+alias hp='http-prompt'

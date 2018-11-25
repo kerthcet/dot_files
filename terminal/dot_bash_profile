@@ -19,33 +19,11 @@ eval "$(pyenv init -)"
 export PATH=/usr/local/Cellar/macvim/8.1-147/MacVim.app/Contents/bin:$PATH
 export PATH="$PATH:$HOME/.rvm/bin"
 
-alias phantomjs="/Users/tracy/Downloads/phantomjs-2.1.1-macosx/bin/phantomjs"
 
 # GOPATH
 export GOPATH="/Users/tracy/Documents/Golang"
 export PATH="$PATH:$GOPATH/bin"
 
-alias py="/Users/tracy/.pyenv/shims/python"
-alias vim="/usr/local/bin/vim"
-alias vi="vim"
-
-alias doge="rails test"
-
-# django shortcuts
-alias django="python manage.py"
-
-# go dashboard
-alias god="cd '/Users/tracy/Documents/Golang/src/github.com/senorprogrammer/wtf'; make run"
-
-alias gofish="go get -u -v -x"
-alias gun="go run"
-
-alias cat="ccat"
-alias ctags="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
-
-alias bmp="bumpversion"
-alias d='docker'
-alias dc='docker-compose'
-alias ap='ansible-playbook'
-
-alias wrk="cd '/Users/tracy/Documents/GitMe/wrk'; ./wrk"
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
+fi

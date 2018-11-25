@@ -18,8 +18,9 @@ brew install yapf
 # tmux
 brew install tmux
 
-# npm tools
-brew install node
+# nvm
+brew install nvm
+nvm install v8.11.0
 # vim 格式化json文件等
 npm install -g prettier
 # 基于puppeteer的web截图工具
@@ -38,14 +39,22 @@ git config --global http.proxy http://127.0.0.1:1087
 git config --global https.proxy https://127.0.0.1:1087
 
 # tools
+pip3 install bumpversion
+pip3 install http-prompt
+
 brew install autojump
 brew install git-flow
 brew install ansible
-brew install cat
+brew install ccat
 brew install htop
 brew install tig
 brew install tree
-pip3 install bumpversion
-
-# create files
-cd ~/.vim; mkdir undodir
+brew install ag
+brew install mycli # mysql 命令行工具，命令高亮
+brew install shellcheck
+brew install mosh # 基于UDP的终端连接
+brew install fzf
+brew install cloc
+brew install thefuck # 修正命令
+brew install tldr
+brew install fpp
