@@ -58,3 +58,4 @@ brew install cloc
 brew install thefuck # 修正命令
 brew install tldr
 brew install fpp
+brew install exa # ls tool

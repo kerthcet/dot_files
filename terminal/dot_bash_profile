@@ -5,8 +5,8 @@ export PATH=$PATH:$M2_HOME/bin:/usr/local/mysql/bin
 export PATH="$PATH:$HOME/.rvm/bin"
 
 # shadow sockets
-export http_proxy=http://127.0.0.1:1087;
-export https_proxy=http://127.0.0.1:1087;
+# export http_proxy=http://127.0.0.1:1087;
+# export https_proxy=http://127.0.0.1:1087;
 
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
