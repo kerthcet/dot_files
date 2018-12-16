@@ -31,15 +31,14 @@ call plug#begin('~/.vim/plugged')
 	Plug 'wakatime/vim-wakatime'                         "vim wakatime插件
 	Plug 'vim-scripts/TaskList.vim'                      "task list
 	Plug 'vim-scripts/CmdlineComplete'                   "cmd 命令补全, Ctrl-P
-	Plug 'kien/rainbow_parentheses.vim'
+	Plug 'kien/rainbow_parentheses.vim'                  "彩虹括号
 
 	Plug 'majutsushi/tagbar'                             "tagbar 类方法函数等 
 	Plug 'Lokaltog/vim-easymotion'                       "跳转大法
 	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-	Plug 'junegunn/fzf.vim'
+	Plug 'junegunn/fzf.vim'                              "文件，buffer查找
 	Plug 'tmhedberg/matchit'                             "括号匹配 %
 	Plug 'ctrlpvim/ctrlp.vim'                            "文件查找
-	" Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }    "文件查找，替代ctrlp
 
 	Plug 'Valloric/YouCompleteMe'                        "YCM 神器, support go-lang and run shell script to install binaries
 	Plug 'w0rp/ale'                                      "异步语法检查
@@ -48,6 +47,10 @@ call plug#begin('~/.vim/plugged')
 	Plug 'dyng/ctrlsf.vim'                               "search and view tool
 	Plug 'tpope/vim-surround'                            "all abount surrendings
 	Plug 'tpope/vim-repeat'                              "配合vim-surround 使用，重复上面的操作
+	Plug 'kshenoy/vim-signature'                         "行标记
+	Plug 'Raimondi/delimitMate'                          "自动补全括号，跳出括号
+	Plug 'vim-scripts/YankRing.vim'                      "命令剪贴板
+	" Plug 'terryma/vim-multiple-cursors'
 
 	" Golang
 	Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}     "vim for go
@@ -124,13 +127,14 @@ set noexpandtab                 "不允许扩展table"
 set relativenumber              "设置相对行号"
 set clipboard=unnamed           "复制到系统剪贴版
 set autoindent                  "自动对齐
-set nobackup noswapfile         "取消备份
 set autochdir                   "将工作目录自动切换到正在编辑的文件所在的目录
-set undofile                    "文件关闭后也可以维护撤销历史
 set nowb
 set textwidth=80                "设置最大宽度
 filetype plugin indent on       "文件类型检测功能
 autocmd FileType tex setlocal spell spelllang=en_us,cjk
+set nobackup noswapfile         "取消备份
+set undofile                    "文件关闭后也可以维护撤销历史
+set undodir=~/.vim/undodir
 
 " 通过索引快速跳转
 nnoremap <Leader>1 :1b<CR>
@@ -184,8 +188,8 @@ let g:NERDTreeDisablePatternMatchHighlight = 1
 let g:NERDTreeSyntaxEnabledExtensions = ['sql', 'js', 'html', 'go', 'py', 'rb', 'md', 'sh', 'yml', 'json', 'lock', 'j2', 'nomad', 'cfg', 'txt']
 
 " customizing color
-let s:brown = "905532"
 let s:aqua =  "3AFFDB"
+let s:brown = "905532"
 let s:blue = "689FB6"
 let s:darkBlue = "44788E"
 let s:purple = "834F79"
@@ -438,14 +442,22 @@ let g:pymode_rope_lookup_project = 0
 nmap <C-F> <Plug>CtrlSFPrompt
 
 
-" Leaderf ------------------------------------- 
-" let g:Lf_ShortcutF = '<C-P>'
+" fzf -------------------------------------
+nmap <C-P> :Files<CR>
+nmap <C-e> :Buffers<CR>
+let g:fzf_action = {
+  \ 'ctrl-e': 'edit',
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
 
 " ctrlp -------------------------------------
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
     \ }
+
 
 " Better Rainbow Parentheses, 彩虹括号 ------------------------------------- 
 let g:rbpt_colorpairs = [
@@ -466,6 +478,16 @@ let g:rbpt_colorpairs = [
     \ ['darkred',     'DarkOrchid3'],
     \ ['red',         'firebrick3'],
     \ ]
+
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadBraces
+
+
+" delimitMate ------------------------------------- 
+imap <C-L> <Plug>delimitMateS-Tab
+
+" YankRing ------------------------------------- 
+nnoremap <silent> <leader>ys :YRShow<CR>
+nnoremap <silent> <leader>yc :YRClear<CR>
+let g:yankring_replace_n_pkey = ''

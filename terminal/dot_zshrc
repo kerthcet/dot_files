@@ -2,11 +2,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 DEFAULT_USER="tracy"
 
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/tracy/.oh-my-zsh
 export TERM="xterm-256color"
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
 
 # POWERLEVEL9K
 ZSH_THEME="powerlevel9k/powerlevel9k"
@@ -14,7 +10,7 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir dir_writable context vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time background_jobs command_execution_time virtualenv pyenv rvm) # vi_mode
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time background_jobs command_execution_time virtualenv vi_mode pyenv rvm)
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='245'
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='black'
 POWERLEVEL9K_OS_ICON_BACKGROUND="white"
@@ -42,38 +38,59 @@ POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%K{white}%F{black} \UE12E `date +%T` %f%k%F{white}%f "
 
-plugins=(git zsh-autosuggestions zsh-completions autojump zsh-syntax-highlighting zsh-wakatime vi-mode golang)
+plugins=(git zsh-autosuggestions zsh-completions autojump zsh-syntax-highlighting zsh-wakatime vi-mode golang tmux docker-compose)
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/tracy/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /Users/tracy/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# # start typing + [Up-Arrow] - fuzzy find history forward
+# if [[ "${terminfo[kcuu1]}" != "" ]]; then
+#   autoload -U up-line-or-beginning-search
+#   zle -N up-line-or-beginning-search
+#   bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
+# fi
+# # start typing + [Down-Arrow] - fuzzy find history backward
+# if [[ "${terminfo[kcud1]}" != "" ]]; then
+#   autoload -U down-line-or-beginning-search
+#   zle -N down-line-or-beginning-search
+#   bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+# fi
+
+eval $(thefuck --alias)
+
+# nvm 会增加zsh启动时间，非常卡
+function loadnvm(){
+	export NVM_DIR="$HOME/.nvm"
+	. "/usr/local/opt/nvm/nvm.sh"
+}
+
+# Load RVM into a shell session *as a function*
+function loadrvm(){
+	[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+}
+
+# 隐藏该功能，影响cd进入时间
 # auto run pipenv shell when enterin a project
-function auto_pipenv_shell {
-    if [ ! -n "${PIPENV_ACTIVE+1}" ]; then
-        if [ -f "Pipfile" ] ; then
-            pipenv shell
-        fi
-    fi
-}
+# function auto_pipenv_shell {
+#     if [ ! -n "${PIPENV_ACTIVE+1}" ]; then
+#         if [ -f "Pipfile" ] ; then
+#             pipenv shell
+#         fi
+#     fi
+# }
 
-function cd {
-    builtin cd "$@"
-    auto_pipenv_shell
-}
+# function cd {
+#     builtin cd "$@"
+#     auto_pipenv_shell
+# }
 
-# start typing + [Up-Arrow] - fuzzy find history forward
-if [[ "${terminfo[kcuu1]}" != "" ]]; then
-  autoload -U up-line-or-beginning-search
-  zle -N up-line-or-beginning-search
-  bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
-fi
-# start typing + [Down-Arrow] - fuzzy find history backward
-if [[ "${terminfo[kcud1]}" != "" ]]; then
-  autoload -U down-line-or-beginning-search
-  zle -N down-line-or-beginning-search
-  bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
-fi
+# 创建vim undo文件夹
+# if [ ! -d ~/.vim/undodir  ];then
+#   mkdir ~/.vim/undodir
+# fi
 
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
@@ -82,5 +99,6 @@ bindkey '^K' kill-line
 bindkey '^F' forward-char
 bindkey '^B' backward-char
 bindkey '^D' delete-char
+bindkey '^J' list-expand
 
 source ~/.bash_profile

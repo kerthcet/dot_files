@@ -1,12 +1,9 @@
+# mkdir
+mkdir ~/.github/
+mkdir ~/.vim/undodir/
+
 # vim
 brew install vim
-
-# oh-my-zsh
-git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
-
-# wakatime
-pip install wakatime
-git clone https://github.com/wbingli/zsh-wakatime.git ~/.oh-my-zsh/custom/plugins/zsh-wakatime
 
 # ycm
 brew install yapf
@@ -14,6 +11,13 @@ brew install yapf
 # cd path/to/ycm
 # ./install.py --go-completer
 ##############################################
+
+# oh-my-zsh
+git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
+
+# wakatime
+pip install wakatime
+git clone https://github.com/wbingli/zsh-wakatime.git ~/.oh-my-zsh/custom/plugins/zsh-wakatime
 
 # tmux
 brew install tmux
@@ -59,3 +63,20 @@ brew install thefuck # 修正命令
 brew install tldr
 brew install fpp
 brew install exa # ls tool
+
+# 火焰图
+go get -v github.com/uber/go-torch 
+git clone https://github.com/brendangregg/FlameGraph.git ~/.github/FlameGraph
+cp flamegraph.pl /usr/local/bin
+# cmd: go-torch http://localhost:8080/debug/pprof/profile -t 30
+# go install
+# go get -u github.com/google/pprof
+
+# wrk
+git clone https://github.com/wg/wrk.git ~/.github/wrk
+cp wrk /usr/local/bin
+
+# vegeta 压力上不去使用wrk
+# brew update && brew install vegeta
+# brew install rs/tap/jaggr
+# brew install rs/tap/jplot

@@ -1,10 +1,10 @@
-# vim
-alias vi="vim"
-alias vim="/usr/local/bin/vim"
+# kim
+alias vi="/usr/local/bin/vim"
 
 # python
 alias py="/Users/tracy/.pyenv/shims/python"
 alias django="python manage.py"
+alias gg="loadnvm; gitmoji -c"
 
 # golang
 alias gofish="go get -u -v -x"
@@ -17,12 +17,11 @@ alias god="cd '/Users/tracy/Documents/Golang/src/github.com/senorprogrammer/wtf'
 alias bmp="bumpversion"
 alias cat="ccat"
 alias ctags="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
-alias wrk="cd '/Users/tracy/Documents/GitMe/wrk'; ./wrk"
 alias hp='http-prompt'
+alias ls='exa'
 
 # ops
 alias d='docker'
-alias dc='docker-compose'
 alias ap='ansible-playbook'
 
 # k8s
@@ -31,4 +30,3 @@ alias ktl='kubectl'
 alias ket='kubelet'
 alias ktl-pods='kubectl get pods -o wide -n'
 alias ktl-nodes='kubectl get nodes'
-
