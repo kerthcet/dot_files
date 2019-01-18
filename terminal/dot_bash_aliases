@@ -15,7 +15,7 @@ alias doge="rails test"
 # tools
 alias god="cd '/Users/tracy/Documents/Golang/src/github.com/senorprogrammer/wtf'; make run"
 alias bmp="bumpversion"
-alias cat="ccat"
+alias cat="bat"
 alias ctags="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
 alias hp='http-prompt'
 alias ls='exa'

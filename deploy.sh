@@ -50,6 +50,7 @@ brew install autojump
 brew install git-flow
 brew install ansible
 brew install ccat
+brew install bat
 brew install htop
 brew install tig
 brew install tree
