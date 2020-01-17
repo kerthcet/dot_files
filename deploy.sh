@@ -3,7 +3,7 @@ mkdir ~/.github/
 mkdir ~/.vim/undodir/
 
 # vim
-brew install vim
+brew install vim --with-override-system-vi --with-lua
 
 # ycm
 brew install yapf
@@ -50,20 +50,23 @@ brew install autojump
 brew install git-flow
 brew install ansible
 brew install ccat
-brew install bat
+brew install exa # ls tool
+brew install kubectx
+brew install kubernetes-helm
+# brew install bat
 brew install htop
 brew install tig
 brew install tree
 brew install ag
 brew install mycli # mysql 命令行工具，命令高亮
-brew install shellcheck
-brew install mosh # 基于UDP的终端连接
-brew install fzf
+# brew install shellcheck
+# brew install mosh # 基于UDP的终端连接
+# brew install fzf
 brew install cloc
-brew install thefuck # 修正命令
-brew install tldr
-brew install fpp
-brew install exa # ls tool
+# brew install thefuck # 修正命令
+# brew install tldr
+# brew install fpp
+brew install dive # 分析docker image
 
 # 火焰图
 go get -v github.com/uber/go-torch 

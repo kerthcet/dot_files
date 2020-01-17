@@ -43,32 +43,6 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
-		<key>4029B2FA-3326-4117-BDE4-395AE292AC33</key>
-		<dict>
-			<key>enabled</key>
-			<true/>
-			<key>keyword</key>
-			<string>aliconteacher</string>
-			<key>text</key>
-			<string>alicontainer-graphql-teacher</string>
-			<key>url</key>
-			<string>https://cr.console.aliyun.com/?spm=5176.2020520152.210.d103.5bad16ddxCnUP0#/dockerImage/cn-shanghai/kid17_backend/graphql-teacher/build</string>
-			<key>utf8</key>
-			<true/>
-		</dict>
-		<key>4EF2E49A-D3DE-4BA2-BEE2-A8FD49070E5D</key>
-		<dict>
-			<key>enabled</key>
-			<true/>
-			<key>keyword</key>
-			<string>alicontainer</string>
-			<key>text</key>
-			<string>aliyun-container</string>
-			<key>url</key>
-			<string>https://cr.console.aliyun.com/?spm=5176.2020520152.210.d103.5bad16ddxCnUP0#/imageList</string>
-			<key>utf8</key>
-			<true/>
-		</dict>
 		<key>520F5171-E5F5-46E9-8302-DE29A2AE6F09</key>
 		<dict>
 			<key>enabled</key>
@@ -95,16 +69,29 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
-		<key>7A418CAB-EA87-4A3F-95F9-10E797D37B46</key>
+		<key>62B60CA7-86FA-4348-A04E-A2B16E373042</key>
 		<dict>
 			<key>enabled</key>
 			<true/>
 			<key>keyword</key>
-			<string>aliconauth</string>
+			<string>pdd</string>
 			<key>text</key>
-			<string>alicontainer-authentication</string>
+			<string>拼多多</string>
 			<key>url</key>
-			<string>https://cr.console.aliyun.com/?spm=5176.2020520152.210.d103.5bad16ddxCnUP0#/dockerImage/cn-shanghai/kid17_backend/authentication-service/detail</string>
+			<string>https://mms.pinduoduo.com/home/</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>76592786-51F8-4470-91DC-CAAC76805524</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>taobao</string>
+			<key>text</key>
+			<string>淘宝网</string>
+			<key>url</key>
+			<string>https://www.taobao.com/</string>
 			<key>utf8</key>
 			<true/>
 		</dict>
@@ -141,7 +128,7 @@
 			<key>keyword</key>
 			<string>alioss</string>
 			<key>text</key>
-			<string>aliyun-oss</string>
+			<string>aliyun-OSS</string>
 			<key>url</key>
 			<string>https://oss.console.aliyun.com/overview</string>
 			<key>utf8</key>
@@ -173,16 +160,16 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
-		<key>BACD62B3-5C69-45D8-919B-B2D8D81DD268</key>
+		<key>B1196150-E2BC-49FE-92EA-A7717B056098</key>
 		<dict>
 			<key>enabled</key>
 			<true/>
 			<key>keyword</key>
-			<string>aliconguardian</string>
+			<string>jops</string>
 			<key>text</key>
-			<string>alicontainer-graphql-guardian</string>
+			<string>JenkinsOps</string>
 			<key>url</key>
-			<string>https://cr.console.aliyun.com/?spm=5176.2020520152.210.d103.5bad16ddxCnUP0#/dockerImage/cn-shanghai/kid17_backend/graphql-guardian/detail</string>
+			<string>http://jenkins.ops.kid17.com/</string>
 			<key>utf8</key>
 			<true/>
 		</dict>
@@ -202,7 +189,7 @@
 		<key>C47A0547-46DC-4E5B-B79B-8F7267913301</key>
 		<dict>
 			<key>enabled</key>
-			<true/>
+			<false/>
 			<key>keyword</key>
 			<string>gmail</string>
 			<key>text</key>

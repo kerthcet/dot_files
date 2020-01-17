@@ -26,7 +26,11 @@ alias ap='ansible-playbook'
 
 # k8s
 alias kdm='kubeadm'
-alias ktl='kubectl'
-alias ket='kubelet'
-alias ktl-pods='kubectl get pods -o wide -n'
-alias ktl-nodes='kubectl get nodes'
+alias kns='kubens'
+alias ktx='kubectx'
+alias h='helm'
+alias sk='skaffold'
+alias skd='sk dev'
+alias skr='sk run'
+
+alias gmd='go mod'

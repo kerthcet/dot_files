@@ -27,7 +27,6 @@ call plug#begin('~/.vim/plugged')
 	  \ 'do': 'yarn install',
 	  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 
-	Plug 'ryanoasis/vim-devicons'                        "文件icon
 	Plug 'wakatime/vim-wakatime'                         "vim wakatime插件
 	Plug 'vim-scripts/TaskList.vim'                      "task list
 	Plug 'vim-scripts/CmdlineComplete'                   "cmd 命令补全, Ctrl-P
@@ -50,8 +49,9 @@ call plug#begin('~/.vim/plugged')
 	Plug 'kshenoy/vim-signature'                         "行标记
 	Plug 'Raimondi/delimitMate'                          "自动补全括号，跳出括号
 	Plug 'vim-scripts/YankRing.vim'                      "命令剪贴板
+	Plug 'ryanoasis/vim-devicons'                        "文件icon
 	" Plug 'terryma/vim-multiple-cursors'
-
+	
 	" Golang
 	Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}     "vim for go
 
@@ -113,7 +113,7 @@ vnoremap <s-tab> <gv                   "批量回退
 nnoremap <leader><leader>c :nohl<CR>   "取消高亮
 nnoremap gd <C-S>*
 
-set foldmethod=indent           "代码折叠，za, zR, zM, zn 禁用折叠，zN启用折叠，
+set foldmethod=indent           "代码折叠，za收起, zi开启/关闭 | zR, zM, zn 禁用折叠，zN启用折叠，
 set nowrap                      "设置代码不折行"
 set fileformat=unix             "设置以unix的格式保存文件"
 set cindent                     "设置C样式的缩进格式"
@@ -234,9 +234,35 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$', 'tags', '.DS_Store', '.git$', '.v
 "窗口大小"
 let NERDTreeWinSize=40
 
+
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:DevIconsEnableFolderExtensionPatternMatching = 1
+
+let g:DevIconsDefaultFolderOpenSymbol=''
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol=''
+
+" example icons     ﭩ     ﭧ  
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.cfg'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.dockerignore'] = ''
+
+
+
+" 不显示文件夹 
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:WebDevIconsNerdTreeBeforeGlyphPadding = " "
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+" highlight! link NERDTreeFlags NERDTreeDir
+
 " 修改默认箭头
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeDirArrowExpandable = "\u00a0"
+let g:NERDTreeDirArrowCollapsible = "\u00a0"
+" let g:NERDTreeDirArrowExpandable = '▸'
+" let g:NERDTreeDirArrowCollapsible = '▾'
 
 "How can I open a NERDTree automatically when vim starts up if no files were specified?
 autocmd StdinReadPre * let s:std_in=1
@@ -272,10 +298,6 @@ let NERDTreeAutoCenter=1
 
 " 在终端启动vim时，共享NERDTree
 let g:nerdtree_tabs_open_on_console_startup=1
-
-" 显示文件夹
-" let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-
 
 " Indentline -------------------------------------
 let g:indentLine_enabled=1
@@ -399,7 +421,6 @@ let g:go_list_type = "quickfix"
 let g:go_fmt_command = "gofmt"
 let g:go_auto_sameids = 0
 let g:go_decls_includes = "func,type"
-let g:go_def_mode = 'guru'
 let g:go_highlight_types = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_fields = 1
@@ -409,6 +430,7 @@ let g:go_highlight_extra_types = 1
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 let g:go_metalinter_autosave = 1
 let g:go_def_mapping_enabled = 0
+let g:go_def_mode = 'godef'
 
 
 " Ruby -------------------------------------
@@ -443,14 +465,20 @@ nmap <C-F> <Plug>CtrlSFPrompt
 
 
 " fzf -------------------------------------
+" 需要将ctrl-p的快捷方式注释掉才可以生效
 nmap <C-P> :Files<CR>
-nmap <C-e> :Buffers<CR>
+nmap <C-m> :Buffers<CR>
 let g:fzf_action = {
   \ 'ctrl-e': 'edit',
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
+" 设置fzf的root directory
+function! s:find_git_root()
+  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endfunction
 
+command! ProjectFiles execute 'Files' s:find_git_root()
 
 " ctrlp -------------------------------------
 let g:ctrlp_custom_ignore = {
