@@ -1,3 +1,7 @@
+################ NOTE ####################
+#  HOMEBREW_NO_AUTO_UPDATE=1 不更新安装  #
+##########################################
+
 # mkdir
 mkdir ~/.github/
 mkdir ~/.vim/undodir/
@@ -84,3 +88,7 @@ cp wrk /usr/local/bin
 # brew update && brew install vegeta
 # brew install rs/tap/jaggr
 # brew install rs/tap/jplot
+
+# tekton
+brew tap tektoncd/tools
+brew install tektoncd/tools/tektoncd-cli
