@@ -9,6 +9,9 @@ mkdir ~/.vim/undodir/
 # vim
 brew install vim --with-override-system-vi --with-lua
 
+# jq
+brew install jq
+
 # ycm
 brew install yapf
 ##############################################

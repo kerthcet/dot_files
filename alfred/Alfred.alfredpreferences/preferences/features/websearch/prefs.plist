@@ -43,6 +43,19 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
+		<key>102E7B14-6467-4F46-8EAC-692AAD1841A9</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>oos</string>
+			<key>text</key>
+			<string>aliyun-oos</string>
+			<key>url</key>
+			<string>https://oos.console.aliyun.com/cn-shanghai/overview</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
 		<key>11C19F26-0958-4C50-A4B3-FB2FE4C3C408</key>
 		<dict>
 			<key>enabled</key>
@@ -82,6 +95,32 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
+		<key>202A298B-09FA-4839-A638-5E85A5662A0E</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>ssl</string>
+			<key>text</key>
+			<string>aliyun-ssl</string>
+			<key>url</key>
+			<string>https://yundun.console.aliyun.com/?spm=5176.12818093.0.dcas.488716d0mZN3ZF&amp;p=cas#/overview/cn-hangzhou</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>3208F7C3-7692-40D7-AD9E-CA377C0D4ED4</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>ticket</string>
+			<key>text</key>
+			<string>aliyun-tickets</string>
+			<key>url</key>
+			<string>https://workorder.console.aliyun.com/?spm=5176.12818093.nav-right.dticket.488716d0zE4f9g#/ticket/list</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
 		<key>325FED12-92BF-4BFA-BD63-1C30E8F8A4AE</key>
 		<dict>
 			<key>enabled</key>
@@ -118,6 +157,19 @@
 			<string>aliyun-dts</string>
 			<key>url</key>
 			<string>https://dts.console.aliyun.com/#/home/</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>43C92953-7DF2-409E-9D14-1A94A12D8431</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>amqp</string>
+			<key>text</key>
+			<string>aliyun-amqp</string>
+			<key>url</key>
+			<string>https://amqp.console.aliyun.com/?spm=5176.12818093.nav-right.dconsoleEntry.488716d0qRUdM1#/?regionId=cn-shanghai&amp;instanceId=1738934196280736</string>
 			<key>utf8</key>
 			<true/>
 		</dict>
@@ -407,6 +459,32 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
+		<key>B56CE33C-E14F-4EB3-BE72-3F2E372D9A33</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>cost</string>
+			<key>text</key>
+			<string>aliyun-cost</string>
+			<key>url</key>
+			<string>https://usercenter2.aliyun.com/home?spm=5176.2020520101.105.d25.20124df5FO3qtj</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>B93F3D56-1B10-492C-879E-54FAE23D0A2C</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>rdslogin</string>
+			<key>text</key>
+			<string>aliyun-rds-login</string>
+			<key>url</key>
+			<string>https://dms.console.aliyun.com/#/dms/login</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
 		<key>C1893E7E-25BF-4E52-B825-7C1F96F9EE5F</key>
 		<dict>
 			<key>enabled</key>
@@ -446,6 +524,19 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
+		<key>D5CB7059-E925-44FC-A6D5-56A3500FA9CD</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>ess</string>
+			<key>text</key>
+			<string>aliyun-ess</string>
+			<key>url</key>
+			<string>https://essnew.console.aliyun.com/#/ess/region/cn-shanghai</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
 		<key>D9ABC1D2-50FA-40CB-A87F-EF21DA39D4E7</key>
 		<dict>
 			<key>enabled</key>
@@ -456,6 +547,19 @@
 			<string>github</string>
 			<key>url</key>
 			<string>https://github.com/search?utf8=%E2%9C%93&amp;q={query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>DB773004-B66C-4EF2-A09B-92A8CFB0B11E</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>refund</string>
+			<key>text</key>
+			<string>aliyun-refund</string>
+			<key>url</key>
+			<string>https://usercenter2.aliyun.com/refund/refund</string>
 			<key>utf8</key>
 			<true/>
 		</dict>
