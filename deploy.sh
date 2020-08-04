@@ -95,3 +95,13 @@ cp wrk /usr/local/bin
 # tekton
 brew tap tektoncd/tools
 brew install tektoncd/tools/tektoncd-cli
+
+brew install k9s
+brew install c-bata/kube-prompt/kube-prompt
+brew install krew
+
+kubeclt krew install view-allocations
+kubeclt krew install resource-capacity
+kubeclt krew install df-pv
+kubeclt krew install iexec
+kubeclt krew install debug
