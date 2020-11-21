@@ -581,9 +581,9 @@
 			<key>enabled</key>
 			<true/>
 			<key>keyword</key>
-			<string>nodesp</string>
+			<string>nodes</string>
 			<key>text</key>
-			<string>aliyun-k8s-nodes-production</string>
+			<string>aliyun-k8s-nodes</string>
 			<key>url</key>
 			<string>https://cs.console.aliyun.com/?spm=5176.8465980.favorites.dcos.4e701450N32VAr#/k8s/cluster/c3c106d89ac2d4294b22b00dadd56f4f8/node?clusterType=ManagedKubernetes&amp;profile=&amp;state=running&amp;region=cn-shanghai</string>
 			<key>utf8</key>
