@@ -53,6 +53,8 @@ git config --global https.proxy https://127.0.0.1:1087
 pip3 install bumpversion
 pip3 install http-prompt
 
+# alias cat
+brew install bat
 brew install autojump
 brew install git-flow
 brew install ansible
