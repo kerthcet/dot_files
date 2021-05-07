@@ -7,7 +7,7 @@ mkdir ~/.github/
 mkdir ~/.vim/undodir/
 
 # vim
-brew install vim --with-override-system-vi --with-lua
+brew install vim
 
 # jq
 brew install jq
@@ -96,9 +96,16 @@ cp wrk /usr/local/bin
 brew tap tektoncd/tools
 brew install tektoncd/tools/tektoncd-cli
 
+# kubernetes
 brew install k9s
-brew install c-bata/kube-prompt/kube-prompt
+brew install kube-ps1
 brew install krew
+
+# arogo
+brew install argo
+
+# network
+brew cask install switchhosts
 
 kubeclt krew install view-allocations
 kubeclt krew install resource-capacity

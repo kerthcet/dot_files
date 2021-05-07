@@ -312,7 +312,7 @@
 			<key>text</key>
 			<string>aliyun-dns</string>
 			<key>url</key>
-			<string>https://dns.console.aliyun.com/#/dns/setting/kid17.com</string>
+			<string>https://dns.console.aliyun.com/#/dns/domainList</string>
 			<key>utf8</key>
 			<true/>
 		</dict>
