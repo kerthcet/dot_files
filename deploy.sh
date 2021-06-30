@@ -6,8 +6,15 @@
 mkdir ~/.github/
 mkdir ~/.vim/undodir/
 
+# item2
+brew install item2
+# oh-my-zsh
+git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
+# tmux
+brew install tmux
 # vim
 brew install vim
+cp -r ./UltiSnips ~/.vim/UltiSnips
 
 # jq
 brew install jq
@@ -19,15 +26,10 @@ brew install yapf
 # ./install.py --go-completer
 ##############################################
 
-# oh-my-zsh
-git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
-
 # wakatime
-pip install wakatime
-git clone https://github.com/wbingli/zsh-wakatime.git ~/.oh-my-zsh/custom/plugins/zsh-wakatime
+# pip install wakatime
+# git clone https://github.com/wbingli/zsh-wakatime.git ~/.oh-my-zsh/custom/plugins/zsh-wakatime
 
-# tmux
-brew install tmux
 
 # nvm
 brew install nvm
@@ -37,32 +39,24 @@ npm install -g prettier
 # 基于puppeteer的web截图工具
 npm install site-scan -g
 
-# item2
-brew install item2
 
 # python env
 brew install pyenv
 brew install pipenv
-pyenv install -v 3.6.3
-
-# git
-git config --global http.proxy http://127.0.0.1:1087
-git config --global https.proxy https://127.0.0.1:1087
 
 # tools
 pip3 install bumpversion
 pip3 install http-prompt
 
 # alias cat
+# brew install git-flow
+# brew install ansible
+# brew install kubernetes-helm
 brew install bat
 brew install autojump
-brew install git-flow
-brew install ansible
 brew install ccat
 brew install exa # ls tool
 brew install kubectx
-brew install kubernetes-helm
-# brew install bat
 brew install htop
 brew install tig
 brew install tree
@@ -101,16 +95,16 @@ brew install tektoncd/tools/tektoncd-cli
 # kubernetes
 brew install k9s
 brew install kube-ps1
+
 brew install krew
+kubeclt krew install view-allocations
+kubeclt krew install resource-capacity
+kubeclt krew install df-pv
+kubeclt krew install iexec
+kubeclt krew install debug
 
 # arogo
 brew install argo
 
 # network
 brew cask install switchhosts
-
-kubeclt krew install view-allocations
-kubeclt krew install resource-capacity
-kubeclt krew install df-pv
-kubeclt krew install iexec
-kubeclt krew install debug

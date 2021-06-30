@@ -16,4 +16,3 @@ $cmd detach
 $cmd attach
 
 exit 0
-
