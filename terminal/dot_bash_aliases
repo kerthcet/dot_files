@@ -1,4 +1,4 @@
-# kim
+# vim
 alias vi="/usr/local/bin/vim"
 
 # python
@@ -9,11 +9,12 @@ alias gg="loadnvm; gitmoji -c"
 # golang
 alias gofish="go get -u -v -x"
 
-# ruby
-alias doge="rails test"
+# golang
+alias doge="go test ./... -v"
+# alias doge="go test ./... -coverprofile cover.out"
 
 # tools
-alias god="cd '/Users/tracy/Documents/Golang/src/github.com/senorprogrammer/wtf'; make run"
+alias wtf="cd '/Users/tracy/Documents/Golang/src/github.com/senorprogrammer/wtf'; make run"
 alias bmp="bumpversion"
 alias cat="bat"
 alias ctags="/usr/local/Cellar/ctags/5.8_1/bin/ctags"
@@ -28,9 +29,92 @@ alias ap='ansible-playbook'
 alias kdm='kubeadm'
 alias kns='kubens'
 alias ktx='kubectx'
-alias h='helm'
+alias kk='kubectl krew'
+
+# skaffold
 alias sk='skaffold'
-alias skd='sk dev'
+alias skd='sk dev --trigger manual --tail=true --no-prune --port-forward=true --cleanup=false'
 alias skr='sk run'
 
-alias gmd='go mod'
+# helm
+alias h2='helm'
+
+alias h='helm3'
+alias hl='h ls -a'
+alias hlns='h ls -a --namespace'
+alias hg='h upgrade'
+alias hi='h install'
+alias hdel='h uninstall'
+alias hidd='h install --dry-run --debug'
+
+alias kg='kubectl get'
+alias kd='kubectl describe'
+alias ke='kubectl edit'
+
+# service account
+alias kgsa='kubectl get serviceAccount'
+
+# role
+alias kgr='kubectl get role'
+alias kgrb='kubectl get rolebinding'
+alias ker='kubectl edit role'
+alias kerb='kubectl edit rolebinding'
+# clusterrole
+alias kgcr='kubectl get clusterrole'
+alias kgcrb='kubectl get clusterrolebinding'
+alias kecrb='kubectl edit clusterrolebinding'
+alias kecr='kubectl edit clusterrole'
+
+# promethues
+alias kgprome='kubectl get prometheus'
+alias kgsm='kubectl get servicemonitor'
+alias kgpm='kubectl get podmonitor'
+alias kgpromer='kubectl get prometheusrule'
+alias kgam='kubectl get alertmanager'
+
+# tekton
+# alias kgt='kubectl get task'
+# alias kgtr='kubectl get taskrun'
+# alias kgpl='kubectl get pipeline'
+# alias kgplr='kubectl get pipelineRun'
+# alias kgplrsc='kubectl get pipelineResource'
+# alias kgtt='kubectl get TriggerTemplate'
+# alias kgtb='kubectl get TriggerBinding'
+# alias kgel='kubectl get EventListener'
+
+# log
+alias klft='kubectl logs -f --tail 100'
+alias klfa='kubectl logs -f --all-containers --max-log-requests=10 --tail 100'
+
+alias kcurl='kubectl run test --rm -it --image=curlimages/curl -- sh'
+
+alias busybox='kubectl run --restart=Never -it --image=busybox:1.28.4 --rm busybox /bin/sh'
+# refer --go-header-file=
+alias code-generator='/Users/tracy/Documents/Golang/pkg/mod/k8s.io/code-generator@v0.18.0/generate-groups.sh'
+alias grpcui='/Users/tracy/Documents/Golang/bin/grpcui'
+
+alias itl=istioctl
+alias tinker=k9s
+
+alias argocd-workflows='k port-forward svc/argo-workflows-server 2746'
+alias dashboard-argocd='k -nargocd port-forward svc/argocd-server 8080:443'
+alias dashboard-polaris='kubectl port-forward --namespace polaris svc/polaris-dashboard 8080:80'
+alias dashboard-goldilocks='kubectl -n goldilocks port-forward svc/goldilocks-dashboard 8080:80'
+
+###################################### demo #######################################
+alias demo_mongodb='keti data-app-albumservice-mongodb-primary-0 -- mongo admin -u root -p admin123 --authenticationDatabase admin'
+
+alias demo_cdc_connectors='kubectl exec -i infra-kafka-kafka-0 -- curl -X GET http://infra-cdc-connect-api:8083/connectorskubectl exec -i infra-kafka-kafka-0 -- curl -X GET http://infra-cdc-connect-api:8083/connectors'
+alias demo_cdc_delete_connect='kubectl exec -i infra-kafka-kafka-0 -- curl -X DELETE http://infra-cdc-connect-api:8083/connectors/mongodb-download-albums'
+
+alias demo_kafka_topics='keti infra-kafka-kafka-0 -- bin/kafka-topics.sh --zookeeper infra-kafka-zookeeper-nodes:21810 --list'
+alias demo_kafka_delete_topic='keti infra-kafka-kafka-0 -- bin/kafka-topics.sh --zookeeper infra-kafka-zookeeper-nodes:21810 --delete --topic albums.albums.preview_albums'
+alias demo_kafka_describe_topic='keti infra-kafka-kafka-0 -- bin/kafka-consumer-groups.sh --bootstrap-server infra-kafka-kafka-0:9092 --describe --group outbox.event.directory_item'
+alias demo_kafka_alter_topic='keti kafka-cluster-kafka-0 -- bin/kafka-topics.sh --zookeeper kafka-cluster-zookeeper-nodes:21810 --alter --topic print-album --partitions=6'
+
+alias demo_golang_mock='mockgen -source ./domain/tag/repository/facade/tag.go -destination ./domain/tag/repository/facade/tag_mock.go -package facade'
+alias kafka_version="find ./libs/ -name \*kafka_\* | head -1 | grep -o '\kafka[^\n]*'"
+
+alias ride='python /Users/tracy/.local/share/virtualenvs/bdd-2woNHygY/bin/ride.py'
+alias rolling='python /Users/tracy/Desktop/kid17/unimatrix/unimatrix.py'
+alias tf='terraform'

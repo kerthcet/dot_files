@@ -6,7 +6,18 @@ set encoding=UTF-8
 
 " Plug管理 -------------------------------------
 call plug#begin('~/.vim/plugged')
-	Plug 'joshdick/onedark.vim'                          "atom one dark theme
+	" theme
+	Plug 'joshdick/onedark.vim'                         "atom one dark theme
+	Plug 'rakr/vim-one'
+	Plug 'morhetz/gruvbox'
+	Plug 'arcticicestudio/nord-vim'
+	Plug 'crucerucalin/peaksea.vim'
+	Plug 'ayu-theme/ayu-vim'
+
+	" Golang
+	Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}     "vim for go
+
+	Plug 'sainnhe/sonokai'
 	Plug 'sheerun/vim-polyglot'                          "improved syntax highlighting for various languages
 
 	Plug 'scrooloose/nerdtree'                           "目录树
@@ -22,7 +33,7 @@ call plug#begin('~/.vim/plugged')
 
 	Plug 'airblade/vim-gitgutter'                        "编辑文件时git diff 
 	Plug 'tpope/vim-fugitive'                            "状态栏分支名称 
-	" npm install -g prettier first
+	" npm install -g prettier
 	Plug 'prettier/vim-prettier', {
 	  \ 'do': 'yarn install',
 	  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
@@ -52,14 +63,25 @@ call plug#begin('~/.vim/plugged')
 	Plug 'ryanoasis/vim-devicons'                        "文件icon
 	" Plug 'terryma/vim-multiple-cursors'
 	
-	" Golang
-	Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}     "vim for go
-
 	" Python
 	Plug 'python-mode/python-mode'                       "vim for python
 
+	" Ruby
 	Plug 'vim-ruby/vim-ruby'
-call plug#end() 
+
+	" vim cmd
+	Plug 'jalvesaq/vimcmdline'
+
+	" json
+	" Plug 'elzr/vim-json'
+
+	" Yaml
+	" Plug 'stephpy/vim-yaml'
+	Plug 'hashivim/vim-terraform'
+
+	" kubernetes
+	Plug 'andrewstuart/vim-kubernetes'
+	call plug#end() 
 
 
 " 设置外观 -------------------------------------
@@ -71,15 +93,43 @@ set guioptions-=b               "隐藏底部滚动条"
 set cursorline                  "突出显示当前行"
 set cursorcolumn                "突出显示当前列"
 set langmenu=zh_CN.UTF-8        "显示中文菜单
-
+syntax on                       "开启语法高亮
+" let g:one_allow_italics = 1   "注释加背景
+"
+" 主题ayu -------------------------------------
+" set termguicolors     " enable true colors support
+" let ayucolor="light"  " for light version of theme
+" let ayucolor="mirage" " for mirage version of theme
+" let ayucolor="light"   " for dark version of theme
+" colorscheme ayu
+"
+" 主题vim-one -------------------------------------
+" let g:airline_theme='one'
+" colorscheme one
+" set background=light
+" let g:one_allow_italics = 1 " I love italic for comments
 
 " 主题onedark -------------------------------------
-set background=dark " for the dark version
-" let g:one_allow_italics = 1   "注释加背景
-syntax on                       "开启语法高亮
-colorscheme onedark
-let g:airline_theme='onedark'
-
+" colorscheme onedark
+" let g:airline_theme='onedark'
+" set background=dark " for the dark version
+"
+" 主题cool -------------------------------------
+" let g:airline_theme='cool'
+"
+" 主题nord -------------------------------------
+" colorscheme nord
+"
+" 主题 vim-two-firewatch
+" set background=dark " or light if you prefer the light version
+" let g:two_firewatch_italics=1
+" colo two-firewatch
+" let g:airline_theme='twofirewatch' " if you have Airline installed and want the associated theme
+"
+" 主题 gruvbox ------------------------------------- 
+colorscheme gruvbox
+set background=light
+"
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -131,10 +181,16 @@ set autochdir                   "将工作目录自动切换到正在编辑的�
 set nowb
 set textwidth=80                "设置最大宽度
 filetype plugin indent on       "文件类型检测功能
-autocmd FileType tex setlocal spell spelllang=en_us,cjk
 set nobackup noswapfile         "取消备份
 set undofile                    "文件关闭后也可以维护撤销历史
 set undodir=~/.vim/undodir
+autocmd FileType tex setlocal spell spelllang=en_us,cjk
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+set filetype=mustache
+
+" vim-json enable hide double quote
+" let g:vim_json_syntax_conceal = 1
 
 " 通过索引快速跳转
 nnoremap <Leader>1 :1b<CR>
@@ -185,7 +241,7 @@ let NERDTreeHighlightCursorline = 0
 let g:NERDTreeSyntaxDisableDefaultExtensions = 1
 " let g:NERDTreeDisableExactMatchHighlight = 1
 let g:NERDTreeDisablePatternMatchHighlight = 1
-let g:NERDTreeSyntaxEnabledExtensions = ['sql', 'js', 'html', 'go', 'py', 'rb', 'md', 'sh', 'yml', 'json', 'lock', 'j2', 'nomad', 'cfg', 'txt']
+let g:NERDTreeSyntaxEnabledExtensions = ['sql', 'js', 'html', 'go', 'py', 'rb', 'md', 'sh', 'yml', 'yaml', 'json', 'lock', 'j2', 'nomad', 'cfg', 'txt']
 
 " customizing color
 let s:aqua =  "3AFFDB"
@@ -215,8 +271,8 @@ if !exists('g:airline_symbols')
 endif
 
 "设置切换Buffer快捷键"
-nnoremap <C-n> :bn<CR>
-nnoremap <C-b> :bp<CR>
+" nnoremap <C-n> :bn<CR>
+" nnoremap <C-b> :bp<CR>
 
 
 " NERD Tree -------------------------------------
@@ -242,11 +298,13 @@ let g:DevIconsEnableFolderExtensionPatternMatching = 1
 let g:DevIconsDefaultFolderOpenSymbol=''
 let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol=''
 
-" example icons     ﭩ     ﭧ  
+" example icons     ﭩ     ﭧ   ★ ☘ ☢
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.cfg'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.dockerignore'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.yaml'] = 'ﭧ'
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.tgz'] = 'ﭩ'
 
 
 
@@ -317,7 +375,7 @@ let NERDTreeShowHidden=1
 let g:UltiSnipsExpandTrigger = "<leader><CR>"
 let g:UltiSnipsJumpForwardTrigger = "<C-j>"          "<C-j>跳转的到下一个代码块可编辑区
 let g:UltiSnipsJumpBackwardTrigger = "<C-k>"         "<C-k>跳转到上一个代码块可编辑区
-
+" let g:UltiSnipsSnippetDirectories = ["UltiSnips", "~/.vim/mysnippets"]
 
 " YouCompleteMe -------------------------------------
 " YCM, 临时解决vim8.1 跟python3.7不兼容(https://github.com/vim/vim/issues/3117)
@@ -427,11 +485,16 @@ let g:go_highlight_fields = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
-let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_enabled = ['vet', 'golangci-lint', 'errcheck']
 let g:go_metalinter_autosave = 1
 let g:go_def_mapping_enabled = 0
-let g:go_def_mode = 'godef'
-
+let g:go_def_mode='gopls'
+" let g:go_def_mode = 'godef'
+let g:go_info_mode='gopls'
+let g:go_disable_autoinstall = 0
+let g:auto_save = 0
+let g:auto_save_in_insert_mode = 0
+" let g:go_debug=['lsp']
 
 " Ruby -------------------------------------
 autocmd FileType ruby setlocal et sta sw=2 sts=2    "ruby代码缩进
@@ -513,9 +576,18 @@ au Syntax * RainbowParenthesesLoadBraces
 
 
 " delimitMate ------------------------------------- 
+" -ysiw、cs
 imap <C-L> <Plug>delimitMateS-Tab
+
 
 " YankRing ------------------------------------- 
 nnoremap <silent> <leader>ys :YRShow<CR>
 nnoremap <silent> <leader>yc :YRClear<CR>
 let g:yankring_replace_n_pkey = ''
+
+" terraform ------------------------------------- 
+let g:terraform_align=1
+let g:terraform_fold_sections=1
+
+" wakatime
+let g:wakatime_PythonBinary = '/Users/tracy/.pyenv/shims/python'
