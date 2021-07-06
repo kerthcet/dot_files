@@ -50,7 +50,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tmhedberg/matchit'                             "括号匹配 %
 	Plug 'ctrlpvim/ctrlp.vim'                            "文件查找
 
-	Plug 'Valloric/YouCompleteMe'                        "YCM 神器, support go-lang and run shell script to install binaries
+	" Plug 'Valloric/YouCompleteMe'                        "YCM 神器, support go-lang and run shell script to install binaries
+	Plug 'codota/tabnine-vim'                            "Ai自动补全
 	Plug 'w0rp/ale'                                      "异步语法检查
 	Plug 'SirVer/ultisnips'                              "snippet engine
 	Plug 'honza/vim-snippets'                            "snippets files for various programming languages
