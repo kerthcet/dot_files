@@ -5,17 +5,20 @@
 # setup
 # vim-plug: install plug.vim https://github.com/junegunn/vim-plug
 # zsh: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# item2: https://iterm2.com/
 
 # mkdir
 mkdir ~/.github/
 mkdir -p ~/.vim/undodir/
 mkdir ~/.nvm
 
-# item2
-brew install item2
-
 # oh-my-zsh
-git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+cd ~/.oh-my-zsh/custom/plugins && git clone https://github.com/wbingli/zsh-wakatime.git
+
+
 # tmux
 brew install tmux
 # vim
@@ -107,6 +110,3 @@ kubeclt krew install debug
 
 # arogo
 brew install argo
-
-# network
-brew cask install switchhosts
