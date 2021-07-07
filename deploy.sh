@@ -2,12 +2,18 @@
 #  HOMEBREW_NO_AUTO_UPDATE=1 不更新安装  #
 ##########################################
 
+# setup
+# vim-plug: install plug.vim https://github.com/junegunn/vim-plug
+# zsh: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 # mkdir
 mkdir ~/.github/
-mkdir ~/.vim/undodir/
+mkdir -p ~/.vim/undodir/
+mkdir ~/.nvm
 
 # item2
 brew install item2
+
 # oh-my-zsh
 git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
 # tmux
@@ -17,7 +23,7 @@ brew install vim
 cp -r ./UltiSnips ~/.vim/UltiSnips
 
 # jq
-brew install jq
+brew install jq　
 
 # ycm
 brew install yapf
@@ -72,7 +78,7 @@ brew install cloc
 brew install dive # 分析docker image
 
 # 火焰图
-go get -v github.com/uber/go-torch 
+go get -v github.com/uber/go-torch
 git clone https://github.com/brendangregg/FlameGraph.git ~/.github/FlameGraph
 cp flamegraph.pl /usr/local/bin
 # cmd: go-torch http://localhost:8080/debug/pprof/profile -t 30
@@ -80,13 +86,9 @@ cp flamegraph.pl /usr/local/bin
 # go get -u github.com/google/pprof
 
 # wrk
+mkdir ~/.github/wrk
 git clone https://github.com/wg/wrk.git ~/.github/wrk
 cp wrk /usr/local/bin
-
-# vegeta 压力上不去使用wrk
-# brew update && brew install vegeta
-# brew install rs/tap/jaggr
-# brew install rs/tap/jplot
 
 # tekton
 brew tap tektoncd/tools
