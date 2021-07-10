@@ -103,6 +103,7 @@ brew install tektoncd/tools/tektoncd-cli
 # kubernetes
 brew install k9s
 brew install kube-ps1
+brew install kind
 
 brew install krew
 kubeclt krew install view-allocations
