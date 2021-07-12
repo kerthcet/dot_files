@@ -114,3 +114,4 @@ kubeclt krew install debug
 
 # arogo
 brew install argo
+brew install gnu-sed
