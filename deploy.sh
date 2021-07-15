@@ -91,6 +91,9 @@ cp flamegraph.pl /usr/local/bin
 # go install
 # go get -u github.com/google/pprof
 
+# golang bdd testframework
+go get -u github.com/onsi/ginkgo/ginkgo
+
 # wrk
 mkdir ~/.github/wrk
 git clone https://github.com/wg/wrk.git ~/.github/wrk
