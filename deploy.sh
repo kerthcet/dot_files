@@ -28,6 +28,9 @@ brew install tmux
 brew install vim
 cp -r ./UltiSnips ~/.vim/UltiSnips
 
+# vscode
+brew install code
+
 # jq
 brew install jq　
 
