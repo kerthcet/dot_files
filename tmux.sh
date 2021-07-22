@@ -12,7 +12,6 @@ $cmd new -s $session
 
 $cmd set-option -ga terminal-overrides ",xterm-256color:Tc"
 $cmd detach
-
 $cmd attach
 
 exit 0
