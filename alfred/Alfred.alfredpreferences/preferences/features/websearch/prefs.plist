@@ -17,6 +17,19 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
+		<key>88D04B97-7073-48B2-962D-994E95747470</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>grep</string>
+			<key>text</key>
+			<string>grep.app</string>
+			<key>url</key>
+			<string>https://grep.app/search?q={query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
 		<key>D9ABC1D2-50FA-40CB-A87F-EF21DA39D4E7</key>
 		<dict>
 			<key>enabled</key>

@@ -1,3 +1,36 @@
+# k8s
+alias k='kubectl'
+alias kg='kubectl get'
+alias kgns='kubectl get ns'
+alias kaf='kubectl apply -f'
+alias kgp='kubectl get pods'
+alias kgd='kubectl get deployments'
+alias ked='kubectl edit deployments'
+alias kgpgp='kubectl get propagationpolicy'
+alias kepgp='kubectl edit propagationpolicy'
+alias kdm='kubeadm'
+alias kns='kubens'
+alias ktx='kubectx'
+alias kpf='kubectl port-forward'
+alias kdelf='kubectl delete -f'
+alias kgno='kubectl get nodes'
+alias hl='helm ls'
+alias hi='helm install'
+alias hui='helm uninstall'
+alias kd='kubectl describe'
+alias kdp='kubectl describe pods'
+alias kdelp='kubectl delete pods'
+alias klft='kubectl logs -f --tail 100'
+alias klfa='kubectl logs -f --all-containers --max-log-requests=10'
+alias klfat='kubectl logs -f --all-containers --max-log-requests=10 --tail 100'
+alias kgs='kubectl get service'
+alias kgsec="kubectl get secrets"
+alias kgsc="kubectl get storageclass"
+alias kdel="kubectl delete"
+alias kdeld="kubectl delete deployment"
+alias keti="kubectl exec -it"
+alias kverify='make all '
+
 # vim
 alias vi="/usr/local/bin/vim"
 
@@ -8,10 +41,6 @@ alias gg="loadnvm; gitmoji -c"
 
 # golang
 alias gofish="go get -u -v -x"
-
-# golang
-alias doge="go test ./... -v"
-# alias doge="go test ./... -coverprofile cover.out"
 
 # tools
 alias wtf="cd '/Users/tracy/Documents/Golang/src/github.com/senorprogrammer/wtf'; make run"
@@ -25,10 +54,12 @@ alias ls='exa'
 alias d='docker'
 alias ap='ansible-playbook'
 
-# k8s
-alias kdm='kubeadm'
-alias kns='kubens'
-alias ktx='kubectx'
+
+# k8s-dev
+alias sync-master='git checkout master; git pull upstream master; git push'
+alias sync-main='git checkout main; git pull upstream main; git push'
+
+# k8s-tools
 alias kk='kubectl krew'
 
 # skaffold
@@ -39,12 +70,12 @@ alias skr='sk run'
 # helm
 alias h2='helm'
 
-alias h='helm3'
+alias h='helm'
 alias hl='h ls -a'
 alias hlns='h ls -a --namespace'
 alias hg='h upgrade'
 alias hi='h install'
-alias hdel='h uninstall'
+alias hui='h uninstall'
 alias hidd='h install --dry-run --debug'
 
 alias kg='kubectl get'
@@ -84,9 +115,11 @@ alias kgam='kubectl get alertmanager'
 
 # log
 alias klft='kubectl logs -f --tail 100'
-alias klfa='kubectl logs -f --all-containers --max-log-requests=10 --tail 100'
+alias klfa='kubectl logs -f --all-containers --max-log-requests=10'
+alias klfat='kubectl logs -f --all-containers --max-log-requests=10 --tail 100'
 
-alias kcurl='kubectl run test --rm -it --image=curlimages/curl -- sh'
+alias kcurl='kubectl run curl --rm -it --image=curlimages/curl:7.76.1 -- sh'
+alias kping='kubectl run curl --rm -it --image=willfarrell/ping -- sh'
 
 alias busybox='kubectl run --restart=Never -it --image=busybox:1.28.4 --rm busybox /bin/sh'
 # refer --go-header-file=
@@ -118,3 +151,21 @@ alias kafka_version="find ./libs/ -name \*kafka_\* | head -1 | grep -o '\kafka[^
 alias ride='python /Users/tracy/.local/share/virtualenvs/bdd-2woNHygY/bin/ride.py'
 alias rolling='python /Users/tracy/Desktop/kid17/unimatrix/unimatrix.py'
 alias tf='terraform'
+
+alias rebasehead='git rebase -i HEAD~2'
+
+# rust
+alias rc='rustc'
+
+###################################### e.g. #####################################
+# git tag -a release-v0.15.0 -m 'tag 0.15.0'
+# kubectl create secret docker-registry regcred
+# --docker-server=registry.cn-shanghai.aliyuncs.com --docker-username=kerthcet --docker-password=<password> --docker-email=kerthcet@gmail.com
+
+
+# # 停止docker
+# docker stop $(docker ps -a | grep "Exited" | awk '{print $1 }')
+# # 删除docker
+# docker rm $(docker ps -a | grep "Exited" | awk '{print $1 }')
+# # 删除images
+# docker rmi $(docker images | grep "none" | awk '{print $3}')

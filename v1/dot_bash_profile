@@ -1,6 +1,11 @@
 eval "$(pyenv init -)"
 
-export GOPATH="/Users/tracy/Documents/Golang"
+export HELM_EXPERIMENTAL_OCI=1
+export GOPATH="/Users/kerthcet/Workspaces"
+export GOROOT=/Users/kerthcet/sdk/go1.24.2
+export GO111MODULE=on
+export GOPROXY=https://goproxy.cn
+
 export MYSQL_PATH="/usr/local/mysql"
 export PYENV_ROOT="$HOME/.pyenv"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -8,19 +13,22 @@ export RVM="$HOME/.rvm"
 
 export PATH="$MYSQL_PATH/bin:$GOPATH/bin:$PYENV_ROOT/bin:$PATH:$RVM/bin"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-export PATH="$HOME/istio-1.6.2/bin:$PATH"
+export PATH="/Users/kerthcet/Workspaces/kubernetes/third_party/etcd:${PATH}"
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+export PATH="~/Workspaces/kubernetes/third_party/etcd:${PATH}"
 
 export LC_ALL=en_US.UTF-8
-export GO111MODULE=on
-export GOPROXY=https://goproxy.cn
+export GITHUB_USER=kerthcet
 
 # ss代理
+# export https_proxy="http://127.0.0.1:7890"
+# export http_proxy="http://127.0.0.1:7890"
+# export all_proxy="socks5://127.0.0.1:7890"
 export http_proxy=
 export https_proxy=
-# export http_proxy="socks5://127.0.0.1:51837"
-# export https_proxy="socks5://127.0.0.1:51837"
-# export http_proxy="http://127.0.0.1:58591"
-# export https_proxy="http://127.0.0.1:58591"
+export all_proxy=
+export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
 
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
@@ -31,16 +39,21 @@ fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/Users/kerthcet/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/Users/kerthcet/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/kerthcet/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/opt/miniconda3/bin:$PATH"
+        export PATH="/Users/kerthcet/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# The next line enables bash completion for gcloud.
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+# The next line updates PATH for the Google Cloud SDK.
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+. "$HOME/.cargo/env"
