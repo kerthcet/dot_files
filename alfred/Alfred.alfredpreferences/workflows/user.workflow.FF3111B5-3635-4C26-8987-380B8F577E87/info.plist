@@ -8,50 +8,11 @@
 	<string>Tools</string>
 	<key>connections</key>
 	<dict>
-		<key>050E4DA2-31C5-4C14-8C31-B4B981642C26</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>1DBACCF8-3A88-48A2-AE9A-1EC3D292BEBD</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>1631393E-5B53-4C8B-AF64-A04B687438DF</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>6B0F6A32-751F-4071-A1E8-76A2E9486962</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>224556A8-701F-43C1-B08A-A973D9A7DB58</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>95191CE8-8C68-4D5D-9D12-A44919926786</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>23AD3305-8115-499F-9222-ACB802BFE1A3</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>224556A8-701F-43C1-B08A-A973D9A7DB58</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -67,29 +28,6 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>1631393E-5B53-4C8B-AF64-A04B687438DF</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>698ED0AA-6A32-4AA5-B9B4-94F88D53AE40</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>601091A8-890E-4BE9-A2D3-DDBFC35958DA</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>EE67A5BF-0081-4A4E-BDB4-DB8FA2F4AFC3</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -139,42 +77,6 @@
 				<string></string>
 				<key>vitoclose</key>
 				<true/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>698ED0AA-6A32-4AA5-B9B4-94F88D53AE40</string>
-				<key>modifiers</key>
-				<integer>262144</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>95191CE8-8C68-4D5D-9D12-A44919926786</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>050E4DA2-31C5-4C14-8C31-B4B981642C26</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>971BFFF5-E28E-41F4-B45A-A8216C2D230B</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>8FE8475E-6310-49A4-967E-D6CCE73A86AC</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
 			</dict>
 		</array>
 		<key>A78568B3-C360-4A35-A46A-0D91172F86EF</key>
@@ -246,6 +148,16 @@
 		</dict>
 		<dict>
 			<key>config</key>
+			<dict/>
+			<key>type</key>
+			<string>alfred.workflow.utility.hidealfred</string>
+			<key>uid</key>
+			<string>34050778-5F09-4E68-A7AB-A3A4F7C58529</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
 			<dict>
 				<key>inputstring</key>
 				<string>{query}</string>
@@ -260,14 +172,6 @@
 			<string>alfred.workflow.utility.filter</string>
 			<key>uid</key>
 			<string>A78568B3-C360-4A35-A46A-0D91172F86EF</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.hidealfred</string>
-			<key>uid</key>
-			<string>34050778-5F09-4E68-A7AB-A3A4F7C58529</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -362,18 +266,7 @@
 				<key>runningsubtext</key>
 				<string>正在翻译···</string>
 				<key>script</key>
-				<string>&lt;?php
-
-require('YoudaoTranslate.php');
-
-$keys = [
-	['appKey' =&gt; getenv('youdao_appkey'), 'secret' =&gt; getenv('youdao_secret')]
-];
-
-$translator = new YoudaoTranslate($keys);
-echo $translator-&gt;translate($argv[1]);
-
-?&gt;</string>
+				<string>./runtime/txiki ./index.js "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -383,7 +276,7 @@ echo $translator-&gt;translate($argv[1]);
 				<key>title</key>
 				<string>有道翻译</string>
 				<key>type</key>
-				<integer>1</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -424,35 +317,6 @@ echo -n "$query" | say $1 -v Samantha</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>1</integer>
-				<key>focusedappvariable</key>
-				<false/>
-				<key>focusedappvariablename</key>
-				<string></string>
-				<key>hotkey</key>
-				<integer>0</integer>
-				<key>hotmod</key>
-				<integer>0</integer>
-				<key>leftcursor</key>
-				<false/>
-				<key>modsmode</key>
-				<integer>0</integer>
-				<key>relatedAppsMode</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
-			<key>uid</key>
-			<string>971BFFF5-E28E-41F4-B45A-A8216C2D230B</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -483,199 +347,6 @@ afplay "$voice"</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>100</integer>
-				<key>script</key>
-				<string>require('WordBook.php');
-
-$word = "{query}";
-
-$username = getenv('netease_username');
-$password = getenv('netease_password');
-
-
-if (empty($username) || empty($password)) {
-
-	echo '请设置用户名和密码';
-
-} else {
-
-	$wordBook = new WordBook($username, $password);
-
-	echo $wordBook-&gt;add($word);
-
-}</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>1</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>698ED0AA-6A32-4AA5-B9B4-94F88D53AE40</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>removeextension</key>
-				<false/>
-				<key>text</key>
-				<string></string>
-				<key>title</key>
-				<string>{query}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>601091A8-890E-4BE9-A2D3-DDBFC35958DA</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.hidealfred</string>
-			<key>uid</key>
-			<string>EE67A5BF-0081-4A4E-BDB4-DB8FA2F4AFC3</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>update</string>
-				<key>subtext</key>
-				<string>Update YoudaoTranslate Workflow</string>
-				<key>text</key>
-				<string>更新有道翻译</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>23AD3305-8115-499F-9222-ACB802BFE1A3</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<true/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>0</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string>Fetching Github Release</string>
-				<key>script</key>
-				<string>&lt;?php
-
-require('Updater.php');
-
-$version = 'v2.6.0';
-
-$updater = new Updater($version);
-
-echo $updater-&gt;fetchReleases();
-
-?&gt;</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string></string>
-				<key>title</key>
-				<string>查询更新中···</string>
-				<key>type</key>
-				<integer>1</integer>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>224556A8-701F-43C1-B08A-A973D9A7DB58</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>browser</key>
-				<string>com.apple.Safari</string>
-				<key>spaces</key>
-				<string></string>
-				<key>url</key>
-				<string>{query}</string>
-				<key>utf8</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>95191CE8-8C68-4D5D-9D12-A44919926786</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>openwith</key>
-				<string></string>
-				<key>sourcefile</key>
-				<string>~/Downloads/Youdao Translate.alfredworkflow</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openfile</string>
-			<key>uid</key>
-			<string>1DBACCF8-3A88-48A2-AE9A-1EC3D292BEBD</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>seconds</key>
-				<string>5</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.delay</string>
-			<key>uid</key>
-			<string>050E4DA2-31C5-4C14-8C31-B4B981642C26</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string># 配置有道 KEYS
@@ -703,40 +374,12 @@ echo $updater-&gt;fetchReleases();
 5. 把变量填入 workflow 右上角的 [X] 点开后的配置框中</string>
 	<key>uidata</key>
 	<dict>
-		<key>050E4DA2-31C5-4C14-8C31-B4B981642C26</key>
-		<dict>
-			<key>xpos</key>
-			<integer>780</integer>
-			<key>ypos</key>
-			<integer>830</integer>
-		</dict>
 		<key>1631393E-5B53-4C8B-AF64-A04B687438DF</key>
 		<dict>
 			<key>xpos</key>
 			<integer>750</integer>
 			<key>ypos</key>
 			<integer>160</integer>
-		</dict>
-		<key>1DBACCF8-3A88-48A2-AE9A-1EC3D292BEBD</key>
-		<dict>
-			<key>xpos</key>
-			<integer>900</integer>
-			<key>ypos</key>
-			<integer>800</integer>
-		</dict>
-		<key>224556A8-701F-43C1-B08A-A973D9A7DB58</key>
-		<dict>
-			<key>xpos</key>
-			<integer>330</integer>
-			<key>ypos</key>
-			<integer>800</integer>
-		</dict>
-		<key>23AD3305-8115-499F-9222-ACB802BFE1A3</key>
-		<dict>
-			<key>xpos</key>
-			<integer>130</integer>
-			<key>ypos</key>
-			<integer>800</integer>
 		</dict>
 		<key>284F6AAD-8FE7-44A6-AAE4-62A0F8BEE779</key>
 		<dict>
@@ -763,20 +406,6 @@ echo $updater-&gt;fetchReleases();
 			<key>ypos</key>
 			<integer>160</integer>
 		</dict>
-		<key>601091A8-890E-4BE9-A2D3-DDBFC35958DA</key>
-		<dict>
-			<key>xpos</key>
-			<integer>900</integer>
-			<key>ypos</key>
-			<integer>550</integer>
-		</dict>
-		<key>698ED0AA-6A32-4AA5-B9B4-94F88D53AE40</key>
-		<dict>
-			<key>xpos</key>
-			<integer>630</integer>
-			<key>ypos</key>
-			<integer>490</integer>
-		</dict>
 		<key>6B0F6A32-751F-4071-A1E8-76A2E9486962</key>
 		<dict>
 			<key>colorindex</key>
@@ -794,20 +423,6 @@ echo $updater-&gt;fetchReleases();
 			<integer>330</integer>
 			<key>ypos</key>
 			<integer>240</integer>
-		</dict>
-		<key>95191CE8-8C68-4D5D-9D12-A44919926786</key>
-		<dict>
-			<key>xpos</key>
-			<integer>550</integer>
-			<key>ypos</key>
-			<integer>800</integer>
-		</dict>
-		<key>971BFFF5-E28E-41F4-B45A-A8216C2D230B</key>
-		<dict>
-			<key>xpos</key>
-			<integer>120</integer>
-			<key>ypos</key>
-			<integer>350</integer>
 		</dict>
 		<key>A78568B3-C360-4A35-A46A-0D91172F86EF</key>
 		<dict>
@@ -828,33 +443,22 @@ echo $updater-&gt;fetchReleases();
 			<key>xpos</key>
 			<integer>120</integer>
 			<key>ypos</key>
-			<integer>160</integer>
-		</dict>
-		<key>EE67A5BF-0081-4A4E-BDB4-DB8FA2F4AFC3</key>
-		<dict>
-			<key>xpos</key>
-			<integer>910</integer>
-			<key>ypos</key>
-			<integer>700</integer>
+			<integer>240</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
 	<dict>
-		<key>netease_password</key>
-		<string></string>
-		<key>netease_username</key>
-		<string></string>
-		<key>youdao_appkey</key>
+		<key>key</key>
 		<string>570c78066c8c0ed0</string>
-		<key>youdao_secret</key>
+		<key>platform</key>
+		<string>Youdao</string>
+		<key>secret</key>
 		<string>LeXhOSVh6GdydaGY73bj7X0dAwzcQTZ4</string>
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
-		<string>netease_username</string>
-		<string>netease_password</string>
-		<string>youdao_appkey</string>
-		<string>youdao_secret</string>
+		<string>key</string>
+		<string>secret</string>
 	</array>
 	<key>version</key>
 	<string>2.7.0</string>
