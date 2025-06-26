@@ -1,14 +1,21 @@
-## 配置文件
-```
-  1. zsh配置
-  2. vim配置
-  3. alfred配置
-  4. tmux配置
+# Dot Files
 
-## Push Commit
-  1. 每次提交代码都要执行sync.sh脚本，同步数据
+## Configuration List
+```
+Including (not all are used): 
+
+  1. Zsh
+  2. Vim
+  3. Alfred
+  4. Tmux
+  5. Ghostty
+  6. Starship
+
+## How to use
+  1. Run `sh sync.sh` each time to sync the configurations for tracking.
 
 ## Versions
 
-- v1 is the version with iterm2+tmux.
-- v2 is the version with Ghostty.
+- v1 is the version with iTerm2+Tmux.
+- v2 is the version with Ghostty but no Starship.
+
