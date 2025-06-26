@@ -7,3 +7,8 @@
 
 ## Push Commit
   1. 每次提交代码都要执行sync.sh脚本，同步数据
+
+## Versions
+
+- v1 is the version with iterm2+tmux.
+- v2 is the version with Ghostty.

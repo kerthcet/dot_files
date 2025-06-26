@@ -1,0 +1,115 @@
+# k8s
+Alias k='kubectl'
+alias kg='kubectl get'
+alias kgns='kubectl get ns'
+alias kaf='kubectl apply -f'
+alias kgp='kubectl get pods'
+alias kgd='kubectl get deployments'
+alias ked='kubectl edit deployments'
+alias kgpgp='kubectl get propagationpolicy'
+alias kepgp='kubectl edit propagationpolicy'
+alias kdm='kubeadm'
+alias kns='kubens'
+alias ktx='kubectx'
+alias kpf='kubectl port-forward'
+alias kdelf='kubectl delete -f'
+alias kgno='kubectl get nodes'
+alias hl='helm ls'
+alias hi='helm install'
+alias hui='helm uninstall'
+alias kd='kubectl describe'
+alias kdp='kubectl describe pods'
+alias kdelp='kubectl delete pods'
+alias klft='kubectl logs -f --tail 100'
+alias klfa='kubectl logs -f --all-containers --max-log-requests=10'
+alias klfat='kubectl logs -f --all-containers --max-log-requests=10 --tail 100'
+alias kgs='kubectl get service'
+alias kgsec="kubectl get secrets"
+alias kgsc="kubectl get storageclass"
+alias kdel="kubectl delete"
+alias kdeld="kubectl delete deployment"
+alias keti="kubectl exec -it"
+alias kverify='make all '
+
+# ops
+alias d='docker'
+
+
+# k8s-dev
+alias sync-master='git checkout master; git pull upstream master; git push'
+alias sync-main='git checkout main; git pull upstream main; git push'
+
+# skaffold
+alias sk='skaffold'
+alias skd='sk dev --trigger manual --tail=true --no-prune --port-forward=true --cleanup=false'
+alias skr='sk run'
+
+# helm
+alias h='helm'
+alias hl='h ls -a'
+alias hlns='h ls -a --namespace'
+alias hg='h upgrade'
+alias hi='h install'
+alias hui='h uninstall'
+alias hidd='h install --dry-run --debug'
+
+alias kg='kubectl get'
+alias kd='kubectl describe'
+alias ke='kubectl edit'
+
+# service account
+alias kgsa='kubectl get serviceAccount'
+
+# role
+alias kgr='kubectl get role'
+alias kgrb='kubectl get rolebinding'
+alias ker='kubectl edit role'
+alias kerb='kubectl edit rolebinding'
+# clusterrole
+alias kgcr='kubectl get clusterrole'
+alias kgcrb='kubectl get clusterrolebinding'
+alias kecrb='kubectl edit clusterrolebinding'
+alias kecr='kubectl edit clusterrole'
+
+# promethues
+alias kgprome='kubectl get prometheus'
+alias kgsm='kubectl get servicemonitor'
+alias kgpm='kubectl get podmonitor'
+alias kgpromer='kubectl get prometheusrule'
+alias kgam='kubectl get alertmanager'
+
+# log
+alias klft='kubectl logs -f --tail 100'
+alias klfa='kubectl logs -f --all-containers --max-log-requests=10'
+alias klfat='kubectl logs -f --all-containers --max-log-requests=10 --tail 100'
+
+alias kcurl='kubectl run curl --rm -it --image=curlimages/curl:7.76.1 -- sh'
+alias kping='kubectl run curl --rm -it --image=willfarrell/ping -- sh'
+
+alias busybox='kubectl run --restart=Never -it --image=busybox:1.28.4 --rm busybox /bin/sh'
+# refer --go-header-file=
+alias code-generator='/Users/tracy/Documents/Golang/pkg/mod/k8s.io/code-generator@v0.18.0/generate-groups.sh'
+alias grpcui='/Users/tracy/Documents/Golang/bin/grpcui'
+
+alias itl=istioctl
+
+alias argocd-workflows='k port-forward svc/argo-workflows-server 2746'
+alias dashboard-argocd='k -nargocd port-forward svc/argocd-server 8080:443'
+alias dashboard-polaris='kubectl port-forward --namespace polaris svc/polaris-dashboard 8080:80'
+alias dashboard-goldilocks='kubectl -n goldilocks port-forward svc/goldilocks-dashboard 8080:80'
+
+# rust
+alias rc='rustc'
+
+###################################### e.g. #####################################
+# git tag -a release-v0.15.0 -m 'tag 0.15.0'
+# kubectl create secret docker-registry regcred
+# --docker-server=registry.cn-shanghai.aliyuncs.com --docker-username=kerthcet --docker-password=<password> --docker-email=kerthcet@gmail.com
+
+
+# # 停止docker
+# docker stop $(docker ps -a | grep "Exited" | awk '{print $1 }')
+# # 删除docker
+# docker rm $(docker ps -a | grep "Exited" | awk '{print $1 }')
+# # 删除images
+# docker rmi $(docker images | grep "none" | awk '{print $3}')

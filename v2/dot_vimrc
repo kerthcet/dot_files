@@ -1,0 +1,576 @@
+" =========================================================================
+"                 Find me @https://github.com/kerthcet
+" =========================================================================
+
+set encoding=UTF-8
+
+" Plug管理 -------------------------------------
+call plug#begin('~/.vim/plugged')
+	" theme
+	Plug 'joshdick/onedark.vim'                         "atom one dark theme
+	Plug 'rakr/vim-one'
+	Plug 'morhetz/gruvbox'
+	Plug 'arcticicestudio/nord-vim'
+	Plug 'crucerucalin/peaksea.vim'
+
+	" Golang
+	Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}     "vim for go
+
+	Plug 'sainnhe/sonokai'
+	Plug 'sheerun/vim-polyglot'                          "improved syntax highlighting for various languages
+
+	Plug 'scrooloose/nerdtree'                           "目录树
+	Plug 'Xuyuanp/nerdtree-git-plugin'                   "目录树git插件
+	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'       "icon highlight
+	Plug 'scrooloose/nerdcommenter'                      "批量注释
+
+	Plug 'vim-airline/vim-airline'                       "状态栏目
+	Plug 'vim-airline/vim-airline-themes'                "状态栏主题
+	Plug 'enricobacis/vim-airline-clock'                 "状态栏时间
+	Plug 'jiangmiao/auto-pairs'                          "括号自动匹配
+	Plug 'Yggdroot/indentLine'                           "缩进线
+
+	Plug 'airblade/vim-gitgutter'                        "编辑文件时git diff
+	Plug 'tpope/vim-fugitive'                            "状态栏分支名称
+	Plug 'prettier/vim-prettier', {
+	  \ 'do': 'yarn install',
+	  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
+
+	Plug 'wakatime/vim-wakatime'                         "vim wakatime插件
+	Plug 'vim-scripts/TaskList.vim'                      "task list
+	Plug 'vim-scripts/CmdlineComplete'                   "cmd 命令补全, Ctrl-P
+	Plug 'kien/rainbow_parentheses.vim'                  "彩虹括号
+
+	Plug 'majutsushi/tagbar'                             "tagbar 类方法函数等
+	Plug 'Lokaltog/vim-easymotion'                       "跳转大法
+	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+	Plug 'junegunn/fzf.vim'                              "文件，buffer查找
+	Plug 'tmhedberg/matchit'                             "括号匹配 %
+	Plug 'ctrlpvim/ctrlp.vim'                            "文件查找
+
+	Plug 'codota/tabnine-vim'                            "Ai自动补全
+	Plug 'w0rp/ale'                                      "异步语法检查
+	Plug 'honza/vim-snippets'                            "snippets files for various programming languages
+	Plug 'dyng/ctrlsf.vim'                               "search and view tool
+	Plug 'tpope/vim-surround'                            "all abount surrendings
+	Plug 'tpope/vim-repeat'                              "配合vim-surround 使用，重复上面的操作
+	Plug 'kshenoy/vim-signature'                         "行标记
+	Plug 'Raimondi/delimitMate'                          "自动补全括号，跳出括号
+	Plug 'vim-scripts/YankRing.vim'                      "命令剪贴板
+	Plug 'ryanoasis/vim-devicons'                        "文件icon
+
+	" Python
+	Plug 'python-mode/python-mode'                       "vim for python
+
+	" Ruby
+	Plug 'vim-ruby/vim-ruby'
+
+	" vim cmd
+	Plug 'jalvesaq/vimcmdline'
+
+	" Yaml
+	" Plug 'stephpy/vim-yaml'
+	Plug 'hashivim/vim-terraform'
+
+	" kubernetes
+	Plug 'andrewstuart/vim-kubernetes'
+
+	Plug 'morhetz/gruvbox'
+	call plug#end()
+
+
+" 设置外观 -------------------------------------
+set number                      "显示行号
+set showtabline=0               "隐藏顶部标签栏"
+set guioptions-=r               "隐藏右侧滚动条"
+set guioptions-=L               "隐藏左侧滚动条"
+set guioptions-=b               "隐藏底部滚动条"
+set cursorline                  "突出显示当前行"
+set cursorcolumn                "突出显示当前列"
+set langmenu=zh_CN.UTF-8        "显示中文菜单
+syntax on                       "开启语法高亮
+" let g:one_allow_italics = 1   "注释加背景
+
+" 主题vim-one -------------------------------------
+" let g:airline_theme='one'
+" colorscheme one
+" set background=light
+" let g:one_allow_italics = 1 " I love italic for comments
+
+" 主题onedark -------------------------------------
+" colorscheme onedark
+" let g:airline_theme='onedark'
+" set background=dark " for the dark version
+
+" 主题 gruvbox -------------------------------------
+colorscheme gruvbox
+set background=light
+"
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+
+" if (empty($TMUX))
+  if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+" endif
+
+
+" Gitgutter -------------------------------------
+" '[-c', 向前跳转；']-c'向后跳转；
+let g:gitgutter_highlight_lines = 0        "turn on line highlighting
+
+
+" 辅助功能 -------------------------------------
+let mapleader = ","             "设置<leader>
+nnoremap <leader>s :w
+nnoremap <leader>q :q
+nnoremap <leader>qq :q!
+nnoremap <leader>w :wq
+vnoremap <tab> >gv                     "批量缩进
+vnoremap <s-tab> <gv                   "批量回退
+nnoremap <leader><leader>c :nohl<CR>   "取消高亮
+nnoremap <leader><leader>h <C-S>*
+
+set foldmethod=indent           "代码折叠，za收起, zi开启/关闭 | zR, zM, zn 禁用折叠，zN启用折叠，
+set nowrap                      "设置代码不折行"
+set fileformat=unix             "设置以unix的格式保存文件"
+set cindent                     "设置C样式的缩进格式"
+set tabstop=4                   "一个 tab 显示出来是多少个空格，默认 8
+set shiftwidth=4                "每一级缩进是多少个空格
+set backspace+=indent,eol,start "set backspace&可以对其重置
+set showmatch                   "显示匹配的括号"
+set scrolloff=5                 "距离顶部和底部5行"
+set laststatus=2                "命令行为两行"
+set noexpandtab                 "不允许扩展table"
+set relativenumber              "设置相对行号"
+set clipboard=unnamed           "复制到系统剪贴版
+set autoindent                  "自动对齐
+set autochdir                   "将工作目录自动切换到正在编辑的文件所在的目录
+set nowb
+set textwidth=80                "设置最大宽度
+filetype plugin indent on       "文件类型检测功能
+set nobackup noswapfile         "取消备份
+set undofile                    "文件关闭后也可以维护撤销历史
+set undodir=~/.vim/undodir
+autocmd FileType tex setlocal spell spelllang=en_us,cjk
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+set filetype=mustache
+
+" vim-json enable hide double quote
+" let g:vim_json_syntax_conceal = 1
+
+" 通过索引快速跳转
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
+
+nnoremap <Leader>sb :sb                "对buffer进行水平分屏
+nnoremap <Leader>vs :vertical sb       "对buffer进行垂直分屏
+
+nnoremap <leader>path :cd %:p:h         "显示当前路径
+
+" 其他杂项 -------------------------------------
+set mouse=a
+set selection=exclusive
+set selectmode=mouse,key
+set matchtime=5
+set ignorecase                  " 设置默认进行大小写不敏感查找
+set smartcase                   " 如果有一个大写字母，则切换到大小写敏感查找
+set incsearch                   " 键入即时搜索
+set hlsearch                    " 高亮搜索项"
+set whichwrap+=<,>,h,l
+set autoread
+set noerrorbells                " 去掉输入错误的提示音，虽然我也不知道是什么声音
+
+
+" Bug Solution -------------------------------------
+set re=1                        "解决ruby语法高亮导致vim变慢(refer:  https://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting)"
+set lazyredraw                  "Something about macros, not clear, just place here."
+set ttyfast                     "Something with scrolling slow, not clear either."
+
+
+" AirLine -------------------------------------
+let g:airline#extensions#tabline#enabled=1          	"display buffers
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#branch#enabled=1
+let g:airline#extensions#tabline#buffer_nr_show=1
+" you can add the convenience variable let g:airline_powerline_fonts = 1 to your vimrc which will automatically populate the g:airline_symbols dictionary with the powerline symbols.
+let g:airline_powerline_fonts=1
+
+" vim-nerdtree-syntax-highlight
+let NERDTreeHighlightCursorline = 0
+let g:NERDTreeSyntaxDisableDefaultExtensions = 1
+" let g:NERDTreeDisableExactMatchHighlight = 1
+let g:NERDTreeDisablePatternMatchHighlight = 1
+let g:NERDTreeSyntaxEnabledExtensions = ['sql', 'js', 'html', 'go', 'py', 'rb', 'md', 'sh', 'yml', 'yaml', 'json', 'lock', 'j2', 'nomad', 'cfg', 'txt']
+
+" customizing color
+let s:aqua =  "3AFFDB"
+let s:brown = "905532"
+let s:blue = "689FB6"
+let s:darkBlue = "44788E"
+let s:purple = "834F79"
+let s:lightPurple = "834F79"
+let s:red = "AE403F"
+let s:beige = "F5C06F"
+let s:yellow = "F09F17"
+let s:orange = "D4843E"
+let s:darkOrange = "F16529"
+let s:pink = "CB6F6F"
+let s:salmon = "EE6E73"
+let s:green = "8FAA54"
+let s:lightGreen = "31B53E"
+let s:white = "FFFFFF"
+let s:rspec_red = 'FE405F'
+let s:git_orange = 'F54D27'
+
+let g:NERDTreeExactMatchHighlightColor = {}
+let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:darkBlue
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+"设置切换Buffer快捷键"
+" nnoremap <C-n> :bn<CR>
+" nnoremap <C-b> :bp<CR>
+
+
+" NERD Tree -------------------------------------
+"使用F3键快速调出和隐藏它
+map <C-t> :NERDTreeToggle<CR>
+
+let NERDTreeChDirMode=1                      "改变tree目录的同时改变工程的目录
+
+"显示书签"
+let NERDTreeShowBookmarks=1
+
+"设置忽略文件类型"
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$', 'tags', '.DS_Store', '.git$', '.venv', '.keep']
+
+"窗口大小"
+let NERDTreeWinSize=40
+
+" Disable unmatched folder and file icons having the same color as their labels
+let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
+let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
+
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:DevIconsEnableFolderExtensionPatternMatching = 1
+
+let g:DevIconsDefaultFolderOpenSymbol=''
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol=''
+
+" example icons     ﭩ     ﭧ   ★ ☘ ☢
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.cfg'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.dockerignore'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.yaml'] = 'ﭧ'
+let g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['.tgz'] = 'ﭩ'
+
+
+
+" 不显示文件夹
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:WebDevIconsNerdTreeBeforeGlyphPadding = " "
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+" highlight! link NERDTreeFlags NERDTreeDir
+
+" 修改默认箭头
+let g:NERDTreeDirArrowExpandable = "\u00a0"
+let g:NERDTreeDirArrowCollapsible = "\u00a0"
+" let g:NERDTreeDirArrowExpandable = '▸'
+" let g:NERDTreeDirArrowCollapsible = '▾'
+
+"How can I open a NERDTree automatically when vim starts up if no files were specified?
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+"How can I open NERDTree automatically when vim starts up on opening a directory?
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+" 打开vim时自动打开NERDTree
+" autocmd vimenter * NERDTree
+
+" 关闭vim时，如果打开的文件除了NERDTree没有其他文件时，它自动关闭，减少多次按:q!
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" 开发的过程中，我们希望git信息直接在NERDTree中显示出来， 和Eclipse一样，修改的文件和增加的文件都给出相应的标注， 这时需要安装的插件就是 nerdtree-git-plugin,配置信息如下
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
+" 显示行号
+let NERDTreeShowLineNumbers=1
+let NERDTreeAutoCenter=1
+
+" 在终端启动vim时，共享NERDTree
+let g:nerdtree_tabs_open_on_console_startup=1
+
+" Indentline -------------------------------------
+let g:indentLine_enabled=1
+let g:indentLine_char='¦'
+let g:indent_guides_start_level=1  " 从第一层开始可视化显示缩进
+
+
+" NerdCommenter -------------------------------------
+let g:NERDSpaceDelims=1
+let g:NERDTrimTrailingWhitespace=1
+let g:NERDDefaultAlign = 'left'    " 注释从头开始
+let NERDTreeShowHidden=1
+
+
+" " Ultisnips -------------------------------------
+" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+" let g:UltiSnipsExpandTrigger = "<leader><CR>"
+" let g:UltiSnipsJumpForwardTrigger = "<C-j>"          "<C-j>跳转的到下一个代码块可编辑区
+" let g:UltiSnipsJumpBackwardTrigger = "<C-k>"         "<C-k>跳转到上一个代码块可编辑区
+" let g:UltiSnipsSnippetDirectories = ["UltiSnips", "~/.vim/mysnippets"]
+
+" " YouCompleteMe -------------------------------------
+" " YCM, 临时解决vim8.1 跟python3.7不兼容(https://github.com/vim/vim/issues/3117)
+" if has('python3')
+"   silent! python3 1
+" endif
+
+" " 补全菜单的开启与关闭
+" set completeopt=longest,menu                                " 让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+" let g:ycm_min_num_of_chars_for_completion = 1               " 从第?个键入字符就开始罗列匹配项
+" let g:ycm_autoclose_preview_window_after_completion = 1     " 智能关闭自动补全窗口
+" let g:ycm_cache_omnifunc = 0                                " 禁止缓存匹配项,每次都重新生成匹配项
+" let g:ycm_collect_identifiers_from_tags_files=1             " 开启 YCM 基于标签引擎
+" let g:ycm_auto_trigger = 1                                  " 开启 YCM 基于标识符补全，默认为1
+" let g:ycm_seed_identifiers_with_syntax=1                    " 开启 YCM 基于语法关键字补全
+" let g:ycm_complete_in_comments = 1                          " 在注释输入中也能补全
+" let g:ycm_complete_in_strings = 1                           " 在字符串输入也能补全
+" let g:ycm_collect_identifiers_from_comments_and_strings = 0 " 注释和字符串中的文字也会被收入补全
+" let g:ycm_add_preview_to_completeopt = 0                    " 自动弹出函数原型预览窗口
+" let g:ycm_show_diagnostics_ui = 0                           " 不显示诊断信息
+" let g:ycm_server_log_level = 'debug'                        " log level
+" let g:ycm_python_binary_path = 'python'                     " 指向默认的python, 同时会检测默认virtualenv
+" autocmd InsertLeave * if pumvisible() == 0|pclose|endif     " 离开插入模式后自动关闭预览窗口
+
+" let g:ycm_semantic_triggers =  {
+"   \   'c' : ['->', '.'],
+"   \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+"   \             're!\[.*\]\s'],
+"   \   'ocaml' : ['.', '#'],
+"   \   'cpp,objcpp' : ['->', '.', '::'],
+"   \   'perl' : ['->'],
+"   \   'php' : ['->', '::'],
+"   \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+"   \   'ruby' : ['.', '::'],
+"   \   'lua' : ['.', ':'],
+"   \   'erlang' : [':'],
+"   \ }
+
+" " 补全菜单中各项之间进行切换和选取：默认使用tab  s-tab进行上下切换，使用enter选取。可进行自定义设置：
+" " let g:ycm_key_list_select_completion=['<c-n>']
+" " let g:ycm_key_list_select_completion = ['<Down>']      " 通过上下键在补全菜单中进行切换
+" " let g:ycm_key_list_previous_completion=['<c-p>']
+" " let g:ycm_key_list_previous_completion = ['<Up>']
+" "
+" inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"    " 回车即选中补全菜单中的当前项
+
+" nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
+" nnoremap <leader>jf :YcmCompleter GoToDefinition<CR>
+" nnoremap <leader>jg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" let g:ycm_error_symbol = '•'
+" let g:ycm_warning_symbol = '•'
+" let g:ycm_confirm_extra_conf=0                  " 关闭加载.ycm_extra_conf.py确认提示
+
+
+" Tagbar -------------------------------------
+nmap <leader>l :TagbarToggle<CR>                " ,l 打开tagbar窗口
+let g:tagbar_autofocus = 1
+
+
+" fugitive.vim -------------------------------------
+nmap <leader>gb :Git blame<CR>
+
+
+" Tasklist -------------------------------------
+let g:tlTokenList = ["FIXME", "TODO", "NOTE", "WARN", "MODIFY", "HACK"]
+nnoremap <leader>tl :TaskList<CR>
+let g:tlWindowPosition = 1
+
+
+" Ale -------------------------------------
+let g:ale_set_highlights = 0
+let g:ale_fix_on_save = 1
+
+let g:ale_sign_error = '•'
+let g:ale_sign_warning = '•'
+
+let g:ale_echo_msg_error_str = '✖ Error'
+let g:ale_echo_msg_warning_str = ' Warning'
+let g:ale_echo_msg_format = '[#%linter%#] %s [%severity%]'
+
+let g:ale_statusline_format = ['E•%d', 'W•%d', 'OK']
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_lint_on_text_changed = 0
+
+autocmd VimEnter,Colorscheme * :hi ALEWarningSign   cterm=bold ctermfg=179   "Warning icon color
+
+nmap <silent> <leader><leader>j <Plug>(ale_previous_wrap)
+nmap <silent> <leader><leader>k <Plug>(ale_next_wrap)
+
+
+" Vim-go -------------------------------------
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd FileType go nmap <leader>b <Plug>(go-build)
+autocmd FileType go nmap <leader>r <Plug>(go-run)
+autocmd FileType go nmap <leader>t <Plug>(go-test)
+autocmd FileType go nmap gd <Plug>(go-def)
+
+let g:go_list_type = "quickfix"
+let g:go_fmt_command = "gofmt"
+let g:go_auto_sameids = 0
+let g:go_decls_includes = "func,type"
+let g:go_highlight_types = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_metalinter_enabled = ['vet', 'golangci-lint', 'errcheck']
+let g:go_metalinter_autosave = 1
+let g:go_def_mapping_enabled = 0
+let g:go_def_mode='gopls'
+" let g:go_def_mode = 'godef'
+let g:go_info_mode='gopls'
+let g:go_disable_autoinstall = 0
+let g:auto_save = 0
+let g:auto_save_in_insert_mode = 0
+" let g:go_debug=['lsp']
+
+" Ruby -------------------------------------
+autocmd FileType ruby setlocal et sta sw=2 sts=2    "ruby代码缩进
+
+
+" Pymode -------------------------------------
+autocmd FileType python set ts=4 | set sw=4 | set expandtab formatprg=yapf
+" 动作说明: mz 标记当前位置 gg gq G 跳到文档首行，美化到文档尾行 `z 回到之前标记好的位置
+autocmd BufWritePre *.py silent normal mzgggqG`z
+
+let g:pymode_python = 'python3'
+let g:pymode_warnings = 1
+let g:pymode_folding = 0
+let g:pymode_run = 1                                  "使用python-mode运行python代码
+let g:pymode_run_bind = '<Leader>r'
+let g:pymode_syntax = 1                               "开启python所有的语法高亮
+let g:pymode_syntax_all = 1
+let g:pymode_trim_whitespaces = 1                     "保存文件时自动删除无用空格
+let g:pymode_virtualenv = 1
+let g:pymode_rope_regenerate_on_write = 0             "项目修改后重新生成缓存
+let g:pymode_lint_on_write = 0
+let g:pymode_breakpoint_bind = '<leader>b'            "自动加入断点语句
+
+" close python mode Regenerate repo cache
+let g:pymode_rope = 0
+let g:pymode_rope_lookup_project = 0
+
+
+" Ctrlsf -------------------------------------
+nmap <C-F> <Plug>CtrlSFPrompt
+
+
+" fzf -------------------------------------
+" 需要将ctrl-p的快捷方式注释掉才可以生效
+nmap <C-P> :Files<CR>
+nmap <C-m> :Buffers<CR>
+let g:fzf_action = {
+  \ 'ctrl-e': 'edit',
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+" 设置fzf的root directory
+function! s:find_git_root()
+  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endfunction
+
+command! ProjectFiles execute 'Files' s:find_git_root()
+
+" ctrlp -------------------------------------
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ }
+
+
+" Better Rainbow Parentheses, 彩虹括号 -------------------------------------
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadBraces
+
+
+" delimitMate -------------------------------------
+" -ysiw、cs
+imap <C-L> <Plug>delimitMateS-Tab
+
+
+" YankRing -------------------------------------
+nnoremap <silent> <leader>ys :YRShow<CR>
+nnoremap <silent> <leader>yc :YRClear<CR>
+let g:yankring_replace_n_pkey = ''
+let g:yankring_history_dir = '~/.yankring'
+
+" terraform -------------------------------------
+let g:terraform_align=1
+let g:terraform_fold_sections=1
+
+" wakatime
+let g:wakatime_PythonBinary = '/Users/kerthcet/.pyenv/shims/python'
+

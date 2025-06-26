@@ -1,0 +1,59 @@
+add_newline = false
+
+format = "$directory$git_branch $character"
+
+[username]
+show_always = true
+style_user = "yellow"
+style_root = "red bold"
+
+[hostname]
+ssh_only = false
+# style = "blue"
+
+[directory]
+truncation_length = 10
+truncate_to_repo = false
+style = "blue"
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[✗](bold red)"
+
+[os]
+style = "bold blue"
+disabled = false # 显示操作系统图标
+format = "[$symbol]($style)"
+
+[git_branch]
+symbol = " "
+style = "bold green"
+format = "[$symbol$branch]($style)"
+
+[git_status]
+format = '([$all_status]($style))'
+style = "bold red"
+
+[kubernetes]
+symbol = "☸️ "
+format = '[($context) \($namespace\)](dim purple) '
+disabled = false
+
+[python]
+symbol = "🐍"
+format = '[${symbol}(${version}) \($virtualenv\)](bold green) '
+python_binary = "python3"
+
+[rust]
+symbol = "🦀"
+format = '[$symbol($version)](red bold) '
+
+[golang]
+symbol = ""
+format = '[$symbol($version)](bold blue) '
+
+[package]
+symbol = "📦"
+format = "[$symbol$version](208 bold) "
+disabled = true
+
