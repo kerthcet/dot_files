@@ -4,8 +4,6 @@
 <dict>
 	<key>bundleid</key>
 	<string>Youdao.Translator</string>
-	<key>category</key>
-	<string>Tools</string>
 	<key>connections</key>
 	<dict>
 		<key>1631393E-5B53-4C8B-AF64-A04B687438DF</key>
@@ -136,6 +134,8 @@
 				<false/>
 				<key>clipboardtext</key>
 				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
 				<key>transient</key>
 				<false/>
 			</dict>
@@ -144,11 +144,14 @@
 			<key>uid</key>
 			<string>CAF59F43-6C28-47BF-B3DA-1A65C2198F2F</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
-			<dict/>
+			<dict>
+				<key>unstackview</key>
+				<false/>
+			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.hidealfred</string>
 			<key>uid</key>
@@ -209,7 +212,7 @@
 			<key>uid</key>
 			<string>1631393E-5B53-4C8B-AF64-A04B687438DF</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -247,6 +250,8 @@
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
 				<key>argumenttrimmode</key>
 				<integer>0</integer>
 				<key>argumenttype</key>
@@ -285,7 +290,7 @@
 			<key>uid</key>
 			<string>8FE8475E-6310-49A4-967E-D6CCE73A86AC</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -377,9 +382,9 @@ afplay "$voice"</string>
 		<key>1631393E-5B53-4C8B-AF64-A04B687438DF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>750</integer>
+			<real>750</real>
 			<key>ypos</key>
-			<integer>160</integer>
+			<real>160</real>
 		</dict>
 		<key>284F6AAD-8FE7-44A6-AAE4-62A0F8BEE779</key>
 		<dict>
@@ -388,23 +393,23 @@ afplay "$voice"</string>
 			<key>note</key>
 			<string>在线发音</string>
 			<key>xpos</key>
-			<integer>900</integer>
+			<real>900</real>
 			<key>ypos</key>
-			<integer>400</integer>
+			<real>400</real>
 		</dict>
 		<key>34050778-5F09-4E68-A7AB-A3A4F7C58529</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1050</integer>
+			<real>1050</real>
 			<key>ypos</key>
-			<integer>70</integer>
+			<real>70</real>
 		</dict>
 		<key>487D7A3C-11A7-416D-8F0F-21097B979E4C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>660</integer>
+			<real>660</real>
 			<key>ypos</key>
-			<integer>160</integer>
+			<real>160</real>
 		</dict>
 		<key>6B0F6A32-751F-4071-A1E8-76A2E9486962</key>
 		<dict>
@@ -413,39 +418,41 @@ afplay "$voice"</string>
 			<key>note</key>
 			<string>本地发音</string>
 			<key>xpos</key>
-			<integer>900</integer>
+			<real>900</real>
 			<key>ypos</key>
-			<integer>250</integer>
+			<real>250</real>
 		</dict>
 		<key>8FE8475E-6310-49A4-967E-D6CCE73A86AC</key>
 		<dict>
 			<key>xpos</key>
-			<integer>330</integer>
+			<real>330</real>
 			<key>ypos</key>
-			<integer>240</integer>
+			<real>240</real>
 		</dict>
 		<key>A78568B3-C360-4A35-A46A-0D91172F86EF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>660</integer>
+			<real>660</real>
 			<key>ypos</key>
-			<integer>70</integer>
+			<real>70</real>
 		</dict>
 		<key>CAF59F43-6C28-47BF-B3DA-1A65C2198F2F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>900</integer>
+			<real>900</real>
 			<key>ypos</key>
-			<integer>40</integer>
+			<real>40</real>
 		</dict>
 		<key>D7047D97-8226-43FB-8656-4CF365DB3FE3</key>
 		<dict>
 			<key>xpos</key>
-			<integer>120</integer>
+			<real>120</real>
 			<key>ypos</key>
-			<integer>240</integer>
+			<real>240</real>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
 	<key>variables</key>
 	<dict>
 		<key>key</key>
