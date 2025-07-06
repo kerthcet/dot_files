@@ -1,7 +1,10 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(pyenv init --path)"
+
+. "$HOME/.local/bin/env"
+. "$HOME/.cargo/env"
 
 export GOPATH="/Users/kerthcet/Workspaces"
-export GOROOT=/Users/kerthcet/sdk/go1.24.2
 export GO111MODULE=on
 export HELM_EXPERIMENTAL_OCI=1
 # export GOPROXY=https://goproxy.cn
@@ -16,4 +19,6 @@ export all_proxy=
 # export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
 
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
+[ -f ~/.bash_secrets ] && source ~/.bash_secrets
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+

@@ -1,0 +1,49 @@
+font-family = "JetBrainsMono Nerd Font"
+font-style-bold = "Medium"
+font-style-bold-italic = "Medium Italic"
+font-size = 15
+grapheme-width-method = "unicode"
+# font-thicken = true
+
+background = #1f2430
+foreground = #cbccc6
+background-opacity = 0.9
+background-blur-radius = 5
+
+window-save-state = "always"
+# window-padding-x = 20
+# window-padding-y = 2,10
+
+palette = 0=#51576d
+palette = 1=#e78284
+palette = 2=#a6d189
+palette = 3=#e5c890
+palette = 4=#8caaee
+palette = 5=#f4b8e4
+palette = 6=#81c8be
+palette = 7=#a5adce
+palette = 8=#626880
+palette = 9=#e67172
+palette = 10=#8ec772
+palette = 11=#d9ba73
+palette = 12=#7b9ef0
+palette = 13=#f2a4db
+palette = 14=#5abfb5
+palette = 15=#b5bfe2
+cursor-color = #f2d5cf
+cursor-text = #c6d0f5
+cursor-invert-fg-bg = true
+cursor-style = bar
+selection-background = #626880
+selection-foreground = #c6d0f5
+
+keybind = ctrl+v>.=new_split:right
+keybind = ctrl+v>/=new_split:down
+keybind = ctrl+v>h=goto_split:left 
+keybind = ctrl+v>j=goto_split:bottom 
+keybind = ctrl+v>k=goto_split:top 
+keybind = ctrl+v>l=goto_split:right 
+keybind = ctrl+j=previous_tab
+keybind = ctrl+k=next_tab
+keybind = ctrl+P=send:0x10  # Ctrl+P
+keybind = ctrl+N=send:0x0E  # Ctrl+N

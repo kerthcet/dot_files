@@ -76,6 +76,13 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+eval "$(pyenv init -)"
+
+# 向上查找以当前输入开头的历史命令
+bindkey '^P' history-beginning-search-backward
+# 向下查找以当前输入开头的历史命令
+bindkey '^N' history-beginning-search-forward
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -102,3 +109,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# . "$HOME/.local/bin/env"
